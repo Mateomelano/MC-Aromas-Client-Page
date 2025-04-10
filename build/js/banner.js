@@ -1,3 +1,5 @@
+
+// FUNCION BANNERS
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.querySelector(".slider");
   const indicatorsContainer = document.querySelector(".indicators");
@@ -54,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error al cargar banners:", error));
 
 });
+
+// FUNCION PRODUCTOS DESTACADOS
 document.addEventListener("DOMContentLoaded", () => {
   fetch("src/php/get_prod_dest.php")
     .then((res) => res.json())
@@ -61,22 +65,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const container = document.getElementById("productos-container");
 
       productos.forEach((producto) => {
-        
         const card = document.createElement("div");
         card.className = "product-card";
         card.innerHTML = `
         <div class="product-image">
-          <img src="${producto.imagen}" alt="${
-            producto.nombre
-          }" />
+          <img src="${producto.imagen}" alt="${producto.nombre}" />
           <button class="add-to-cart">
             <i class="icon">🛒</i>
           </button>
         </div>
         <h3 class="product-title">${producto.nombre}</h3>
-        <p class="product-price">$${parseFloat(
-          producto.precio
-        ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+        <p class="product-price">$${parseFloat(producto.precio).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+        <p class="product-price-mayorista">Precio Mayorista: $${parseFloat(producto.preciomayorista).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
       `;
         container.appendChild(card);
       });
@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => {
       console.error("Error al cargar productos:", error);
     });
-
 });
 
 
+// FUNCION WHATSAPP
 function abrirWhatsApp() {
   const telefono = "5493534595325"; // sin espacios ni signos
   const mensaje = encodeURIComponent("¡Hola! Quisiera más info sobre los productos.");

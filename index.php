@@ -141,6 +141,55 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
+  <section class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Dónde encontrarnos</h3>
+        <p>San Martin 235 Villa Maria</p>
+        <p>Whatsapp: +54 9 353 459-5325</p>
+        <p>Tel:  353 459 5325</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/merceriachela" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" onclick="abrirWhatsApp(); return false;" target="_blank" class="info-item"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Nuestras marcas</h3>
+        <ul>
+          <li><a href="#">Saphirus</a></li>
+          <li><a href="#">Aromanza</a></li>
+          <li><a href="#">Sagrada Madre</a></li>
+          <li><a href="#">Sandra Marzan</a></li>
+          <li><a href="#">Todos los productos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Enlaces de interés</h3>
+        <ul>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Quienes somos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legales</h3>
+        <ul>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Defensa al consumidor</a></li>
+          <li><a href="#">Devoluciones y reembolsos</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>MC AROMAS © 2025</p>
+      <p>DEV + DESIGN BY <a href="https://mateomelano-portfolio.netlify.app/">MateoMelano</a></p>
+    </div>
+  </section>
 
 
 </body>
