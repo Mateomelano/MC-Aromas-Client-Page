@@ -532,6 +532,31 @@ html {
   opacity: 1;
 }
 
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-button img {
+  width: 30px;
+  height: 30px;
+}
+
 .marcas {
   padding: 3rem;
 }
@@ -767,7 +792,7 @@ html {
 }
 
 .footer {
-  background-color: #0e3a57;
+  background-color: #701019;
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
   padding: 40px 20px 20px;

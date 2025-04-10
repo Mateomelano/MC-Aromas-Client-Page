@@ -94,6 +94,8 @@
     </div>
   </section>
 
+
+
   <!-- INFO -->
   <section class="info">
     <div class="info-header">
@@ -127,7 +129,7 @@
             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
         </svg>
 
-        <p>Pagos por Mercado Pago</p>
+        <p>Pagos por Efectivo / Transeferencia</p>
       </div>
 
       <div class="info-item">
@@ -141,6 +143,8 @@
     </div>
   </section>
 
+
+
   <!-- FOOTER -->
   <section class="footer">
     <div class="footer-container">
@@ -148,10 +152,11 @@
         <h3>Dónde encontrarnos</h3>
         <p>San Martin 235 Villa Maria</p>
         <p>Whatsapp: +54 9 353 459-5325</p>
-        <p>Tel:  353 459 5325</p>
+        <p>Tel: 353 459 5325</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/merceriachela" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="#" onclick="abrirWhatsApp(); return false;" target="_blank" class="info-item"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" onclick="abrirWhatsApp(); return false;" target="_blank" class="info-item"><i
+              class="fab fa-whatsapp"></i></a>
         </div>
       </div>
 
@@ -190,6 +195,12 @@
       <p>DEV + DESIGN BY <a href="https://mateomelano-portfolio.netlify.app/">MateoMelano</a></p>
     </div>
   </section>
+
+
+  <!-- Botón de WhatsApp -->
+  <a href="https://wa.me/1234567890" onclick="abrirWhatsApp(); "class="whatsapp-button" target="_blank" title="Chatea con nosotros en WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+  </a>
 
 
 </body>
