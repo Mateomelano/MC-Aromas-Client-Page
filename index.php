@@ -32,8 +32,10 @@
     </div>
 
     <div class="nav-center">
-      <img class="logo-central"
-        src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1744059260/ea4zbrhdcpl4eu9mdgwz.png" alt="Logo">
+      <a href="index.php">
+        <img class="logo-central"
+          src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1744059260/ea4zbrhdcpl4eu9mdgwz.png" alt="Logo">
+      </a>
     </div>
 
     <div class="nav-right">

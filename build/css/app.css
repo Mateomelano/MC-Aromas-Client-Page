@@ -441,6 +441,7 @@ body {
 .logo-central {
   width: 100px;
   height: 100px;
+  cursor: pointer;
 }
 
 .search-container {
