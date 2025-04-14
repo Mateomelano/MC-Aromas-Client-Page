@@ -33,6 +33,10 @@
     justify-content: center;
     gap: 10px;
   }
+
+  .nav-right {
+    flex-direction: row-reverse; /* Inviertes el orden */
+  }
   
   .nav-left i,
   .nav-right i {
@@ -110,3 +114,4 @@
     font-family: 'Montserrat', sans-serif;
     color: #000000;
   }
+

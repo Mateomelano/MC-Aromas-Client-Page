@@ -1,0 +1,87 @@
+// NAVBAR //
+@media (max-width: 980px) {
+    .logo-central {
+      width: 80px;
+      height: 80px; 
+    }
+
+    .search-container input {
+      width: 150px;
+    }
+  }
+
+
+  @media (max-width: 500px) {
+    .logo-central {
+      display: none;
+    }
+
+    .search-container {
+      margin: 0 auto;
+    }
+  }
+
+
+  //Banners
+
+  @media (max-width: 1500px) {
+    .slider img{
+        object-fit: fill;
+
+    }
+    .banners{
+        height: 50vh;
+    }
+  }
+
+// PRODUCTOS DESTACADOS
+
+
+@media (max-width: 500px) {
+    .productos-destacados .product-card {
+      max-width: 250px;
+    }
+  }
+
+
+//MARCAS
+
+
+@media (max-width: 700px) {
+    .marcas .grid-mosaico {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "saphirus"
+        "aromanza"
+        "bloqueInferior";
+      gap: 1.5rem; /* Podés ajustar el espacio entre bloques si querés */
+    }
+  }
+
+
+// INFO //
+
+
+@media (max-width: 730px) {
+    .info-flex{
+        flex-direction: column;
+    }
+    .info-item{
+        width: 0px;
+    }
+
+    .info-flex svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    p{
+        font-size: 1.5rem;
+    }
+
+    
+    .instagram-link {
+        font-size: 1.5rem;
+    }
+}

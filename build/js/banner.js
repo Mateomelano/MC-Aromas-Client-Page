@@ -99,3 +99,23 @@ function abrirWhatsApp() {
   
   window.open(isMobile ? urlMobile : urlWeb, "_blank");
 }
+
+
+function moverLogo() {
+  const logo = document.querySelector('.logo-central');
+  const navRight = document.querySelector('.nav-right');
+  const navCenter = document.querySelector('.nav-center');
+
+  if (window.innerWidth <= 980) {
+    if (!navRight.contains(logo)) {
+      navRight.appendChild(logo);
+    }
+  } else {
+    if (!navCenter.contains(logo)) {
+      navCenter.appendChild(logo);
+    }
+  }
+}
+
+window.addEventListener('load', moverLogo);
+window.addEventListener('resize', moverLogo);
