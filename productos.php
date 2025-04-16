@@ -113,7 +113,10 @@
         </div>
     </section>
 
-
+    <!-- PRODUCTOS -->
+    <section class="productos">
+        <div id="contenedor-productos" class="cards-container"></div>
+    </section>
 
     <!-- FOOTER -->
     <section class="footer">
