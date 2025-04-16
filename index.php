@@ -26,8 +26,8 @@
     <div class="nav-left">
       <i id="sidebar-icon" class="fas fa-bars"></i>
       <div class="search-container">
-        <input type="text" placeholder="Buscar...">
-        <button type="submit"><i class="fas fa-search"></i></button>
+        <input type="text" class="busqueda" placeholder="Buscar...">
+        <button type="submit" class="btn-buscar"><i class="fas fa-search"></i></button>
       </div>
     </div>
 

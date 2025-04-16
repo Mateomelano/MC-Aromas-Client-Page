@@ -127,31 +127,57 @@ window.addEventListener("resize", moverLogo);
 // SIDEBAR
 
 document.addEventListener("DOMContentLoaded", () => {
-  const toggles = document.querySelectorAll('.submenu-toggle');
+  const toggles = document.querySelectorAll(".submenu-toggle");
 
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
       const submenu = toggle.nextElementSibling;
-      const arrow = toggle.querySelector('.arrow-icon');
+      const arrow = toggle.querySelector(".arrow-icon");
 
-      submenu.classList.toggle('show');
-      arrow.classList.toggle('rotate');
+      submenu.classList.toggle("show");
+      arrow.classList.toggle("rotate");
     });
   });
 
   // Sidebar open/close (por si usás un ícono de abrir)
-  const sidebar = document.getElementById('sidebar');
-  const openBtn = document.getElementById('sidebar-icon');
-  const closeBtn = document.getElementById('close-sidebar');
+  const sidebar = document.getElementById("sidebar");
+  const openBtn = document.getElementById("sidebar-icon");
+  const closeBtn = document.getElementById("close-sidebar");
 
-  openBtn?.addEventListener('click', () => {
-    sidebar.style.transform = 'translateX(0)';
+  openBtn?.addEventListener("click", () => {
+    sidebar.style.transform = "translateX(0)";
   });
 
-  closeBtn?.addEventListener('click', () => {
-    sidebar.style.transform = 'translateX(-100%)';
+  closeBtn?.addEventListener("click", () => {
+    sidebar.style.transform = "translateX(-100%)";
   });
 
-  sidebar.style.transform = 'translateX(-100%)'; // oculta al iniciar
+  sidebar.style.transform = "translateX(-100%)"; // oculta al iniciar
 });
 
+//SEARCHBAR
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".btn-buscar").forEach((btn) => {
+    debugger;
+    btn.addEventListener("click", () => {
+      const contenedor = btn.closest(".search-container");
+      const input = contenedor.querySelector(".busqueda");
+
+      if (input && input.value.trim() !== "") {
+        const busqueda = encodeURIComponent(input.value.trim());
+        window.location.href = `productos.php?busqueda=${busqueda}`;
+      }
+    });
+  });
+
+  // Si querés también que funcione con Enter:
+  document.querySelectorAll(".busqueda").forEach((input) => {
+    input.addEventListener("keyup", (e) => {
+      if (e.key === "Enter" && input.value.trim() !== "") {
+        const busqueda = encodeURIComponent(input.value.trim());
+        window.location.href = `productos.php?busqueda=${busqueda}`;
+      }
+    });
+  });
+});
