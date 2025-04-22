@@ -1116,39 +1116,60 @@ h2 {
 
 .filtro-container label {
   font-weight: 500;
-  color: #6a4c93; /* Color similar al de la imagen */
-  font-size: 1rem;
+  color: #b91616; /* Color similar al de la imagen */
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-left: 500px;
 }
 
 .filtro-container i {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 #filtro-select {
   padding: 10px 14px;
-  border: 2px solid #c6aee7;
+  border: 2px solid #b91616;
   border-radius: 12px;
   background-color: #fff;
   color: #333;
-  font-size: 1rem;
+  font-size: 1.5rem;
   outline: none;
   cursor: pointer;
   transition: border-color 0.3s;
 }
 
 #filtro-select:hover {
-  border-color: #a47be7;
+  border-color: #b91616;
 }
 
 #filtro-select:focus {
-  border-color: #6a4c93;
+  border-color: #b91616;
 }
 
 .special {
   border: 1px solid #000000;
+}
+
+#btn-reset-filtros {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #b91616;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+#btn-reset-filtros:hover {
+  border-color: #b91616;
+  color: #b91616; /* Color similar al de la imagen */
+}
+
+.special2 {
+  border: 1.5px solid #b91616;
 }
 
 @media (max-width: 980px) {

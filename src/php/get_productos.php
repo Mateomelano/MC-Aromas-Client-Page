@@ -3,15 +3,27 @@ require_once 'db.php';
 
 $orden = $_GET['orden'] ?? '';
 $busqueda = $_GET['busqueda'] ?? '';
-//WHERE habilitado = 1
+$marca = $_GET['marca'] ?? '';
+$categoria = $_GET['categoria'] ?? '';
+
 $sql = "SELECT nombre, descripcion, categoria, marca, precio, preciomayorista, imagen FROM productos WHERE habilitado = 1";
 
-
-// Búsqueda
 // Búsqueda
 if (!empty($busqueda)) {
     $busqueda = $conn->real_escape_string($busqueda);
-    $sql .= " AND (nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%')";
+    $sql .= " AND (nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%' OR marca LIKE '%$busqueda%' OR categoria LIKE '%$busqueda%')";
+}
+
+// Filtro por marca
+if (!empty($marca)) {
+    $marca = $conn->real_escape_string($marca);
+    $sql .= " AND marca LIKE '%$marca%'";
+}
+
+// Filtro por categoría
+if (!empty($categoria)) {
+    $categoria = $conn->real_escape_string($categoria);
+    $sql .= " AND categoria LIKE '%$categoria%'";
 }
 
 // Ordenamiento
@@ -42,5 +54,4 @@ if ($result->num_rows > 0) {
 header('Content-Type: application/json');
 echo json_encode($productos);
 $conn->close();
-
 ?>

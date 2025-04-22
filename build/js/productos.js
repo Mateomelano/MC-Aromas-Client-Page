@@ -64,18 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
   sidebar.style.transform = "translateX(-100%)"; // oculta al iniciar
 });
 
-// PRODUCTOS GET
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("src/php/get_productos.php")
-    .then((response) => response.json())
-    .then((data) => mostrarProductos(data))
-    .catch((error) => console.error("Error al cargar productos:", error));
-});
-
 // FUNCIÓN PARA MOSTRAR PRODUCTOS
 function mostrarProductos(productos) {
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
+
+    // Si no hay productos, mostramos mensaje
+    if (productos.length === 0) {
+      contenedor.innerHTML = `
+        <div class="no-productos" style="text-align:center; padding:2rem; color:#555;">
+          <p>No se encontraron productos.</p>
+        </div>
+      `;
+      return;
+    }
 
   productos.forEach((producto) => {
     const card = document.createElement("div");
@@ -103,70 +105,128 @@ function mostrarProductos(productos) {
 }
 
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
-function cargarProductos(event) {
+// Variables globales para filtros
+let filtrosActivos = {
+  marca: "",
+  categoria: "",
+  busqueda: ""
+};
+// FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
+function cargarProductos() {
   const orden = document.getElementById("filtro-select")?.value || "";
 
-  let busqueda = "";
+  const url = `src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(
+    filtrosActivos.busqueda
+  )}&marca=${encodeURIComponent(filtrosActivos.marca)}&categoria=${encodeURIComponent(
+    filtrosActivos.categoria
+  )}`;
 
-  // Si el evento proviene de una input de búsqueda, usamos su valor
-  if (event && event.target && event.target.classList.contains("busqueda")) {
-    busqueda = event.target.value.trim();
-  } 
-  // Si viene de un botón, buscamos el input anterior más cercano
-  else if (event && event.target && event.target.classList.contains("btn-buscar")) {
-    const container = event.target.closest(".search-container");
-    const input = container?.querySelector(".busqueda");
-    if (input) {
-      busqueda = input.value.trim();
-    }
-  } 
-  // Si viene del filtro o es carga inicial, tomamos el primero con texto
-  else {
-    document.querySelectorAll(".busqueda").forEach((input) => {
-      if (input.value.trim() !== "") {
-        busqueda = input.value.trim();
-      }
-    });
-  }
-
-  fetch(`src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(busqueda)}`)
+  fetch(url)
     .then((response) => response.json())
-    .then((data) => mostrarProductos(data))
+    .then((data) => {
+      mostrarProductos(data);
+      mostrarFiltrosAplicados({ 
+        marca: filtrosActivos.marca, 
+        categoria: filtrosActivos.categoria, 
+        busqueda: filtrosActivos.busqueda 
+      });
+    })
     .catch((error) => console.error("Error al cargar productos:", error));
 }
 
-// CUANDO CARGA EL DOM
+// ACTUALIZAR LA BÚSQUEDA DESDE INPUTS
+function actualizarBusquedaYRecargar() {
+  document.querySelectorAll(".busqueda").forEach((input) => {
+    if (input.value.trim() !== "") {
+      filtrosActivos.busqueda = input.value.trim();
+    }
+  });
+
+  cargarProductos();
+}
+
+// MOSTRAR FILTROS ACTIVOS
+function mostrarFiltrosAplicados({ marca, categoria, busqueda }) {
+  const contenedor = document.getElementById("filtros-aplicados");
+  let texto = "";
+
+  // Si hay marca o categoría, empezamos el texto
+  if (marca || categoria) {
+    texto = "Mostrando:";
+    if (marca) texto += ` ${capitalizar(marca)}`;
+    if (categoria) texto += ` - ${capitalizar(categoria)}`;
+  }
+
+  // Si también hay búsqueda, la agregamos al final
+  if (busqueda) {
+    // Si ya hay texto previo (marca o categoría), lo combinamos
+    if (texto) {
+      texto += ` - ${busqueda}`;
+    } else {
+      texto = `Resultados para: "${busqueda}"`;
+    }
+  }
+
+  contenedor.textContent = texto;
+}
+
+// FUNCIONES AUXILIARES
+function capitalizar(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+// RESETEAR FILTROS
+function agregarResetListener() {
+  const btnReset = document.getElementById("btn-reset-filtros");
+  if (btnReset) {
+    btnReset.addEventListener("click", () => {
+      window.location.href = "productos.php";
+    });
+  }
+}
+
+// INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const busquedaURL = urlParams.get("busqueda");
 
-  if (busquedaURL) {
+  // Guardar filtros iniciales desde la URL
+  filtrosActivos.busqueda = urlParams.get("busqueda") || "";
+  filtrosActivos.marca = urlParams.get("marca") || "";
+  filtrosActivos.categoria = urlParams.get("categoria") || "";
+
+  // Reflejar búsqueda en inputs
+  if (filtrosActivos.busqueda) {
     document.querySelectorAll(".busqueda").forEach((input) => {
-      input.value = busquedaURL;
+      input.value = filtrosActivos.busqueda;
     });
   }
 
-  cargarProductos(); // carga inicial
+  // Carga inicial
+  cargarProductos();
+  agregarResetListener();
 
+  // Evento de cambio de orden
   const filtro = document.getElementById("filtro-select");
   if (filtro) {
     filtro.addEventListener("change", cargarProductos);
   }
 
+  // Buscar con botón
   document.querySelectorAll(".btn-buscar").forEach((btn) => {
-    btn.addEventListener("click", cargarProductos);
+    btn.addEventListener("click", () => {
+      actualizarBusquedaYRecargar();
+    });
   });
 
+  // Buscar con Enter
   document.querySelectorAll(".busqueda").forEach((input) => {
     input.addEventListener("keyup", function (e) {
       if (e.key === "Enter") {
-        cargarProductos(e);
+        actualizarBusquedaYRecargar();
       }
     });
   });
 });
-
-//FILTROS
 
 //CARRITO
 function agregarAlCarrito(nombreProducto) {
