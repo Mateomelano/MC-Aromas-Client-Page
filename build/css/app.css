@@ -1248,4 +1248,141 @@ h2 {
   .instagram-link {
     font-size: 1.5rem;
   }
+}
+.carrito-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+  z-index: 9999;
+}
+
+.carrito-drawer.abierto {
+  right: 0;
+}
+
+.carrito-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#cerrarCarrito {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.carrito-contenido {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.carrito-producto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.carrito-producto img {
+  width: 60px;
+  height: auto;
+  object-fit: cover;
+}
+
+.carrito-producto-info {
+  flex-grow: 1;
+}
+
+.carrito-footer {
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.carrito-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.btn-iniciar-compra {
+  width: 100%;
+  background: #8e5a75;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ver-mas {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #8e5a75;
+  text-decoration: none;
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.carrito-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.carrito-detalle {
+  flex: 1;
+}
+
+.carrito-nombre {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.carrito-precio {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+
+.carrito-cantidad {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.btn-cantidad {
+  background-color: #ddd;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cantidad-valor {
+  margin: 0 0.5rem;
+  font-weight: 500;
 }/*# sourceMappingURL=app.css.map */
