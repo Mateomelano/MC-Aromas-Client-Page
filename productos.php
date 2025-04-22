@@ -260,6 +260,11 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
     </a>
 
+    <!-- Botón de subir arriba -->
+    <a href="#" id="btnSubirArriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/14024/14024921.png" alt="Subir" />
+    </a>
+
 
 </body>
 

@@ -69,15 +69,15 @@ function mostrarProductos(productos) {
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
 
-    // Si no hay productos, mostramos mensaje
-    if (productos.length === 0) {
-      contenedor.innerHTML = `
+  // Si no hay productos, mostramos mensaje
+  if (productos.length === 0) {
+    contenedor.innerHTML = `
         <div class="no-productos" style="text-align:center; padding:2rem; color:#555;">
           <p>No se encontraron productos.</p>
         </div>
       `;
-      return;
-    }
+    return;
+  }
 
   productos.forEach((producto) => {
     const card = document.createElement("div");
@@ -109,7 +109,7 @@ function mostrarProductos(productos) {
 let filtrosActivos = {
   marca: "",
   categoria: "",
-  busqueda: ""
+  busqueda: "",
 };
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
 function cargarProductos() {
@@ -117,18 +117,18 @@ function cargarProductos() {
 
   const url = `src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(
     filtrosActivos.busqueda
-  )}&marca=${encodeURIComponent(filtrosActivos.marca)}&categoria=${encodeURIComponent(
-    filtrosActivos.categoria
-  )}`;
+  )}&marca=${encodeURIComponent(
+    filtrosActivos.marca
+  )}&categoria=${encodeURIComponent(filtrosActivos.categoria)}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       mostrarProductos(data);
-      mostrarFiltrosAplicados({ 
-        marca: filtrosActivos.marca, 
-        categoria: filtrosActivos.categoria, 
-        busqueda: filtrosActivos.busqueda 
+      mostrarFiltrosAplicados({
+        marca: filtrosActivos.marca,
+        categoria: filtrosActivos.categoria,
+        busqueda: filtrosActivos.busqueda,
       });
     })
     .catch((error) => console.error("Error al cargar productos:", error));
@@ -187,6 +187,17 @@ function agregarResetListener() {
 
 // INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
+  //SUBIR ARRIBA BOTON
+  // Suavemente hace scroll hasta arriba
+  document
+    .getElementById("btnSubirArriba")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
   const urlParams = new URLSearchParams(window.location.search);
 
   // Guardar filtros iniciales desde la URL

@@ -175,6 +175,31 @@ h2 {
     color: #b91616; /* Color similar al de la imagen */
 }
 
+
+// SEARCHBAR
 .special2{
     border: 1.5px solid #b91616;
+}
+
+//Boton subir arriba
+
+#btnSubirArriba {
+    position: fixed;
+    bottom: 20px;
+    right: 100px;
+    z-index: 1000;
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+#btnSubirArriba img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+#btnSubirArriba:hover img {
+    transform: scale(1.1);
 }

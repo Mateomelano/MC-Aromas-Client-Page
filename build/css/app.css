@@ -1172,6 +1172,27 @@ h2 {
   border: 1.5px solid #b91616;
 }
 
+#btnSubirArriba {
+  position: fixed;
+  bottom: 20px;
+  right: 100px;
+  z-index: 1000;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+#btnSubirArriba img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+#btnSubirArriba:hover img {
+  transform: scale(1.1);
+}
+
 @media (max-width: 980px) {
   .logo-central {
     width: 80px;
