@@ -38,10 +38,14 @@
         </div>
 
         <div class="nav-right">
-            <img id="iconoCarrito"
-                src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1744059294/y0illgpwo5zv2yhyhvxs.png"
-                class="carrito" alt="Carrito">
+            <div class="icono-carrito-contenedor">
+                <img id="iconoCarrito"
+                    src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1744059294/y0illgpwo5zv2yhyhvxs.png"
+                    class="carrito" alt="Carrito">
+                <span id="contadorCarrito" class="contador-carrito">0</span>
+            </div>
         </div>
+
     </nav>
 
 
@@ -183,14 +187,18 @@
                 <button id="cerrarCarrito">&times;</button>
             </div>
             <div id="carritoContenido" class="carrito-contenido">
+                <!-- Los productos se inyectan por JS -->
             </div>
             <div class="carrito-footer">
                 <div class="carrito-total">
                     <span>Total:</span>
                     <strong id="carritoTotal">$0,00</strong>
+                    <br>
+                    <span>Total Mayorista:</span>
+                    <strong id="carritoTotalMayorista">$0,00</strong>
                 </div>
                 <button class="btn-iniciar-compra">Iniciar compra</button>
-                <a href="#" class="ver-mas">Ver más productos</a>
+
             </div>
         </div>
     </section>

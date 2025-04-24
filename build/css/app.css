@@ -1252,8 +1252,8 @@ h2 {
 .carrito-drawer {
   position: fixed;
   top: 0;
-  right: -400px;
-  width: 400px;
+  right: -600px;
+  width: 600px;
   height: 100%;
   background: #fff;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
@@ -1272,15 +1272,20 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
-  font-weight: bold;
+}
+.carrito-header h2 {
+  font-size: 2.5rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
 }
 
 #cerrarCarrito {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
+  color: #b91616;
+  padding: 0;
 }
 
 .carrito-contenido {
@@ -1291,19 +1296,79 @@ h2 {
 
 .carrito-producto {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  position: relative;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.carrito-producto img {
-  width: 60px;
-  height: auto;
+.carrito-img {
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .carrito-producto-info {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carrito-producto-info .nombre {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.carrito-precio {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.cantidad-control button {
+  background-color: #b91616;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cantidad-control span {
+  margin: 0 0.7rem;
+  min-width: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.eliminar {
+  background: none;
+  border: none;
+  color: #b91616;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 
 .carrito-footer {
@@ -1314,13 +1379,13 @@ h2 {
 .carrito-total {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2rem;
+  font-size: 2rem;
   margin-bottom: 15px;
 }
 
 .btn-iniciar-compra {
   width: 100%;
-  background: #8e5a75;
+  background: #b91616;
   color: white;
   border: none;
   padding: 12px;
@@ -1334,55 +1399,33 @@ h2 {
   text-align: center;
   margin-top: 10px;
   font-size: 0.9rem;
-  color: #8e5a75;
+  color: #b91616;
   text-decoration: none;
 }
 
-.carrito-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.eliminar {
+  font-size: 1.5rem !important;
 }
 
-.carrito-img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
+.precio {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.carrito-detalle {
-  flex: 1;
+.icono-carrito-contenedor {
+  position: relative;
+  display: inline-block;
 }
 
-.carrito-nombre {
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-}
-
-.carrito-precio {
+.contador-carrito {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #b91616;
+  color: white;
+  font-size: 1.8rem;
   font-weight: bold;
-  font-size: 1rem;
-  color: #333;
-}
-
-.carrito-cantidad {
-  display: flex;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
-.btn-cantidad {
-  background-color: #ddd;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cantidad-valor {
-  margin: 0 0.5rem;
-  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: none;
 }/*# sourceMappingURL=app.css.map */

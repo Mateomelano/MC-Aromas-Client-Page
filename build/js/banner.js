@@ -181,3 +181,90 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+//carrito
+//CARRITO
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+
+function agregarAlCarrito(nombre, precio, imagenUrl, preciomayorista) {
+  const productoExistente = carrito.find((p) => p.nombre === nombre);
+  if (productoExistente) {
+    productoExistente.cantidad++;
+  } else {
+    carrito.push({ nombre, precio: parseFloat(precio), imagenUrl, preciomayorista: parseFloat(preciomayorista) , cantidad: 1 });
+  }
+  actualizarCarrito();
+  mostrarCarrito();
+}
+
+function actualizarCarrito() {
+  let contenedor = document.getElementById("carritoContenido");
+  contenedor.innerHTML = "";
+
+  carrito.forEach((prod, index) => {
+    let div = document.createElement("div");
+    div.classList.add("carrito-producto");
+    div.innerHTML = `
+      <img src="${prod.imagenUrl}" alt="${prod.nombre}" class="carrito-img">
+      <div class="carrito-producto-info">
+        <div class="nombre">${prod.nombre}</div>
+        <div class="precio"><strong>$${(prod.precio * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
+        <div class="preciomayorista"><strong>$${(prod.preciomayorista * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
+        <div class="cantidad-control">
+          <button onclick="cambiarCantidad(${index}, -1)">−</button>
+          <span>${prod.cantidad}</span>
+          <button onclick="cambiarCantidad(${index}, 1)">+</button>
+          <button class="eliminar" onclick="eliminarProducto(${index})"><i class="fa-regular fa-trash-can"></i></button>
+        </div>
+      </div>
+    `;
+    contenedor.appendChild(div);
+  });
+
+  const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+  const totalmayorista = carrito.reduce((sum, p) => sum + p.preciomayorista * p.cantidad, 0);
+  document.getElementById("carritoTotal").innerText = `$${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}`;
+  document.getElementById("carritoTotalMayorista").innerText = `$${totalmayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}`;
+
+
+  const totalCantidad = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+  const contador = document.getElementById("contadorCarrito");
+
+  contador.textContent = totalCantidad;
+  contador.style.display = totalCantidad > 0 ? "inline-block" : "none";
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+}
+
+function cambiarCantidad(index, delta) {
+  carrito[index].cantidad += delta;
+  if (carrito[index].cantidad <= 0) {
+    carrito.splice(index, 1);
+  }
+  actualizarCarrito();
+}
+
+function eliminarProducto(index) {
+  carrito.splice(index, 1);
+  actualizarCarrito();
+}
+
+function mostrarCarrito() {
+  document.getElementById("carrito").classList.add("abierto");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("cerrarCarrito").addEventListener("click", () => {
+    document.getElementById("carrito").classList.remove("abierto");
+  });
+
+  const iconoCarrito = document.getElementById("iconoCarrito");
+  if (iconoCarrito) {
+    iconoCarrito.addEventListener("click", mostrarCarrito);
+  }
+  actualizarCarrito(); // ← Muy importante para que cargue lo guardado
+
+});
