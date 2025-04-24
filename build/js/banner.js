@@ -183,17 +183,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-//carrito
 //CARRITO
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
-function agregarAlCarrito(nombre, precio, imagenUrl, preciomayorista) {
+function agregarAlCarrito(nombre, precio, imagenUrl, preciomayorista, id) {
   const productoExistente = carrito.find((p) => p.nombre === nombre);
   if (productoExistente) {
     productoExistente.cantidad++;
   } else {
-    carrito.push({ nombre, precio: parseFloat(precio), imagenUrl, preciomayorista: parseFloat(preciomayorista) , cantidad: 1 });
+    carrito.push({ id, nombre, precio: parseFloat(precio), imagenUrl, preciomayorista: parseFloat(preciomayorista) , cantidad: 1 });
   }
   actualizarCarrito();
   mostrarCarrito();
@@ -211,6 +210,7 @@ function actualizarCarrito() {
       <div class="carrito-producto-info">
         <div class="nombre">${prod.nombre}</div>
         <div class="precio"><strong>$${(prod.precio * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
+        <span class="etiqueta-mayorista">Mayorista:</span>
         <div class="preciomayorista"><strong>$${(prod.preciomayorista * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
         <div class="cantidad-control">
           <button onclick="cambiarCantidad(${index}, -1)">−</button>
@@ -267,4 +267,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   actualizarCarrito(); // ← Muy importante para que cargue lo guardado
 
+});
+
+//Whataspp Carrito Compra
+function enviarPedidoWhatsApp() {
+  console.log(carrito)
+  const telefono = "5493534595325";
+  if (carrito.length === 0) {
+    alert("El carrito está vacío.");
+    return;
+  }
+
+  let mensaje = "*🛒 Pedido desde la tienda online:*\n\n";
+
+  carrito.forEach((prod) => {
+    mensaje += `• *${prod.nombre}*\n`;
+    mensaje += `  Cantidad: ${prod.cantidad}\n`;
+    mensaje += `  Precio: $${(prod.precio * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}\n`;
+    mensaje += `  Precio Mayorista: $${(prod.preciomayorista * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}\n\n`;
+  });
+
+  const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+  const totalMayorista = carrito.reduce((sum, p) => sum + p.preciomayorista * p.cantidad, 0);
+
+  mensaje += `*💵 Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*\n`;
+  mensaje += `*📦 Total Mayorista: $${totalMayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*`;
+
+    // 👉 ENVIAMOS A PHP
+    debugger
+    fetch("src/php/guardar_ventas.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        productos: carrito,
+        total,
+        total_mayorista: totalMayorista
+      })
+    });
+
+
+  const mensajeCodificado = encodeURIComponent(mensaje);
+  const urlMobile = `https://wa.me/${telefono}?text=${mensajeCodificado}`;
+  const urlWeb = `https://web.whatsapp.com/send?phone=${telefono}&text=${mensajeCodificado}`;
+
+  const isMobile = /iPhone|Android|iPad|Mobile/i.test(navigator.userAgent);
+  window.open(isMobile ? urlMobile : urlWeb, "_blank");
+
+    // 🧹 Vaciar el carrito
+    //carrito = [];
+    //localStorage.removeItem("carrito");
+    //actualizarCarrito();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const botonCompra = document.querySelector(".btn-iniciar-compra");
+  if (botonCompra) {
+    botonCompra.addEventListener("click", enviarPedidoWhatsApp);
+  }
 });

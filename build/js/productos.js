@@ -82,10 +82,11 @@ function mostrarProductos(productos) {
   productos.forEach((producto) => {
     const card = document.createElement("div");
     card.classList.add("card");
-
+    console.log(producto);
     card.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <div class="card-content">
+        <h3 class="producto-id" style="display: none;">${producto.id}</h3>
         <h3 class="producto-nombre">${producto.nombre}</h3>
         <p class="producto-descripcion">${producto.descripcion}</p>
         <p class="producto-precio">$ ${parseFloat(
@@ -94,10 +95,10 @@ function mostrarProductos(productos) {
         <p class="precio-mayorista">Precio Mayorista: $ ${parseFloat(
           producto.preciomayorista
         ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
-      <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio}, '${producto.imagen}', ${producto.preciomayorista} )">Agregar al carrito</button>
+      <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio}, '${producto.imagen}', ${producto.preciomayorista} , ${producto.id}  )">Agregar al carrito</button>
 
       </div>
-    `;
+    `; 
 
     contenedor.appendChild(card);
   });
@@ -242,12 +243,12 @@ document.addEventListener("DOMContentLoaded", () => {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
-function agregarAlCarrito(nombre, precio, imagenUrl, preciomayorista) {
+function agregarAlCarrito(nombre, precio, imagenUrl, preciomayorista, id) {
   const productoExistente = carrito.find((p) => p.nombre === nombre);
   if (productoExistente) {
     productoExistente.cantidad++;
   } else {
-    carrito.push({ nombre, precio: parseFloat(precio), imagenUrl, preciomayorista: parseFloat(preciomayorista) , cantidad: 1 });
+    carrito.push({ id, nombre, precio: parseFloat(precio), imagenUrl, preciomayorista: parseFloat(preciomayorista) , cantidad: 1 });
   }
   actualizarCarrito();
   mostrarCarrito();
@@ -326,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Whataspp Carrito Compra
 function enviarPedidoWhatsApp() {
+  console.log(carrito)
   const telefono = "5493534595325";
   if (carrito.length === 0) {
     alert("El carrito está vacío.");
@@ -347,6 +349,21 @@ function enviarPedidoWhatsApp() {
   mensaje += `*💵 Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*\n`;
   mensaje += `*📦 Total Mayorista: $${totalMayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*`;
 
+    // 👉 ENVIAMOS A PHP
+    debugger
+    fetch("src/php/guardar_ventas.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        productos: carrito,
+        total,
+        total_mayorista: totalMayorista
+      })
+    });
+
+
   const mensajeCodificado = encodeURIComponent(mensaje);
   const urlMobile = `https://wa.me/${telefono}?text=${mensajeCodificado}`;
   const urlWeb = `https://web.whatsapp.com/send?phone=${telefono}&text=${mensajeCodificado}`;
@@ -355,9 +372,9 @@ function enviarPedidoWhatsApp() {
   window.open(isMobile ? urlMobile : urlWeb, "_blank");
 
     // 🧹 Vaciar el carrito
-    carrito = [];
-    localStorage.removeItem("carrito");
-    actualizarCarrito();
+    //carrito = [];
+    //localStorage.removeItem("carrito");
+    //actualizarCarrito();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

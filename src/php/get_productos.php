@@ -6,7 +6,7 @@ $busqueda = $_GET['busqueda'] ?? '';
 $marca = $_GET['marca'] ?? '';
 $categoria = $_GET['categoria'] ?? '';
 
-$sql = "SELECT nombre, descripcion, categoria, marca, precio, preciomayorista, imagen FROM productos WHERE habilitado = 1";
+$sql = "SELECT id,nombre, descripcion, categoria, marca, precio, preciomayorista, imagen FROM productos WHERE habilitado = 1";
 
 // Búsqueda
 if (!empty($busqueda)) {
