@@ -191,15 +191,18 @@
             </div>
             <div class="carrito-footer">
                 <div class="carrito-total">
-                    <span>Total:</span>
-                    <strong id="carritoTotal">$0,00</strong>
-                    <br>
-                    <span>Total Mayorista:</span>
-                    <strong id="carritoTotalMayorista">$0,00</strong>
+                    <div class="linea-total">
+                        <span>Total:</span>
+                        <strong id="carritoTotal">$0,00</strong>
+                    </div>
+                    <div class="linea-total-mayorista">
+                        <span>Total Mayorista:</span>
+                        <strong id="carritoTotalMayorista">$0,00</strong>
+                    </div>
                 </div>
                 <button class="btn-iniciar-compra">Iniciar compra</button>
-
             </div>
+
         </div>
     </section>
 

@@ -265,6 +265,7 @@ function actualizarCarrito() {
       <div class="carrito-producto-info">
         <div class="nombre">${prod.nombre}</div>
         <div class="precio"><strong>$${(prod.precio * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
+        <span class="etiqueta-mayorista">Mayorista:</span>
         <div class="preciomayorista"><strong>$${(prod.preciomayorista * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
         <div class="cantidad-control">
           <button onclick="cambiarCantidad(${index}, -1)">−</button>

@@ -4,7 +4,7 @@
   right: -600px;
   width: 600px;
   height: 100%;
-  background: #fff;
+  background: #f7f7f7;
   box-shadow: -2px 0 10px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
 #cerrarCarrito {
   background: none;
   border: none;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   cursor: pointer;
   color: #b91616;
   padding: 0; // opcional, por si le quedó padding por defecto
@@ -57,7 +57,7 @@
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 18px;
   flex-shrink: 0;
 }
 
@@ -70,21 +70,21 @@
 
 .carrito-producto-info .nombre {
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: #333;
   margin-bottom: 0.25rem;
 }
 
 .carrito-precio {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.4rem;
   color: #333;
 }
 
 .cantidad-control {
   display: flex;
   align-items: center;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   background-color: #f5f5f5;
   border-radius: 20px;
   width: fit-content;
@@ -97,7 +97,7 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  font-size: 3rem;
+  font-size: 1.4rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -182,4 +182,47 @@
   padding: 2px 6px;
   border-radius: 50%;
   display: none; // Oculto por defecto si no hay productos
+}
+
+.carrito-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  justify-content: start;
+  .linea-total,
+  .linea-total-mayorista {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1.4rem;
+
+    span {
+      font-weight: 600;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  .linea-total-mayorista {
+    color: #888;
+    font-size: 1.4rem;
+  }
+}
+
+
+.precio-mayorista {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.3rem;
+}
+.etiqueta-mayorista {
+  font-weight: bold;
+  color: #b00;
+  margin-right: 0.3rem;
+  font-size: 1.4rem;
 }
