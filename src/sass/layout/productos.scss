@@ -203,3 +203,22 @@ h2 {
     transform: scale(1.1);
 }
 
+
+//Paginador
+#paginador button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #paginador button.activo {
+    background-color: #b91616; /* Azul Bootstrap */
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    transform: scale(1.1); /* Que se agrande un poco */
+  }
+  

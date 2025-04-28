@@ -5,26 +5,38 @@ $orden = $_GET['orden'] ?? '';
 $busqueda = $_GET['busqueda'] ?? '';
 $marca = $_GET['marca'] ?? '';
 $categoria = $_GET['categoria'] ?? '';
+$pagina = isset($_GET['pagina']) ? intval($_GET['pagina']) : 1;
+$limite = isset($_GET['limite']) ? intval($_GET['limite']) : 2;
+$offset = ($pagina - 1) * $limite;
 
-$sql = "SELECT id,nombre, descripcion, categoria, marca, precio, preciomayorista, imagen FROM productos WHERE habilitado = 1";
+$sqlBase = "FROM productos WHERE habilitado = 1";
 
 // Búsqueda
 if (!empty($busqueda)) {
     $busqueda = $conn->real_escape_string($busqueda);
-    $sql .= " AND (nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%' OR marca LIKE '%$busqueda%' OR categoria LIKE '%$busqueda%')";
+    $sqlBase .= " AND (nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%' OR marca LIKE '%$busqueda%' OR categoria LIKE '%$busqueda%')";
 }
 
 // Filtro por marca
 if (!empty($marca)) {
     $marca = $conn->real_escape_string($marca);
-    $sql .= " AND marca LIKE '%$marca%'";
+    $sqlBase .= " AND marca LIKE '%$marca%'";
 }
 
 // Filtro por categoría
 if (!empty($categoria)) {
     $categoria = $conn->real_escape_string($categoria);
-    $sql .= " AND categoria LIKE '%$categoria%'";
+    $sqlBase .= " AND categoria LIKE '%$categoria%'";
 }
+
+// Primero, contar el total (para el paginador)
+$sqlTotal = "SELECT COUNT(*) as total " . $sqlBase;
+$resultTotal = $conn->query($sqlTotal);
+$rowTotal = $resultTotal->fetch_assoc();
+$totalProductos = intval($rowTotal['total']);
+
+// Ahora, traer los productos de la página actual
+$sql = "SELECT id, nombre, descripcion, categoria, marca, precio, preciomayorista, imagen " . $sqlBase;
 
 // Ordenamiento
 switch ($orden) {
@@ -42,6 +54,9 @@ switch ($orden) {
         break;
 }
 
+// Limitar los resultados
+$sql .= " LIMIT $limite OFFSET $offset";
+
 $result = $conn->query($sql);
 $productos = [];
 
@@ -51,7 +66,12 @@ if ($result->num_rows > 0) {
     }
 }
 
+// Ahora respondemos con productos + total
 header('Content-Type: application/json');
-echo json_encode($productos);
+echo json_encode([
+    'productos' => $productos,
+    'total' => $totalProductos,
+]);
+
 $conn->close();
 ?>

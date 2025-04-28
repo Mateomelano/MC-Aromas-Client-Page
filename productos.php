@@ -228,6 +228,9 @@
         </div>
 
         <div id="contenedor-productos" class="cards-container"></div>
+        <div id="paginador" style="text-align:center; margin-top: 20px;"></div>
+
+
     </section>
 
     <!-- FOOTER -->

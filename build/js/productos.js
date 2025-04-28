@@ -112,26 +112,31 @@ let filtrosActivos = {
   busqueda: "",
 };
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
-function cargarProductos() {
+let paginaActual = 1; 
+const limitePorPagina = 2; // o 50 si querés
+function cargarProductos(pagina = 1) {
+  const limite = 2; // Cantidad de productos por página
   const orden = document.getElementById("filtro-select")?.value || "";
 
   const url = `src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(
     filtrosActivos.busqueda
   )}&marca=${encodeURIComponent(
     filtrosActivos.marca
-  )}&categoria=${encodeURIComponent(filtrosActivos.categoria)}`;
+  )}&categoria=${encodeURIComponent(
+    filtrosActivos.categoria
+  )}&pagina=${pagina}&limite=${limite}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      mostrarProductos(data);
+      mostrarProductos(data.productos); // Asumo que data trae {productos: [], total: X}
       mostrarFiltrosAplicados({
         marca: filtrosActivos.marca,
         categoria: filtrosActivos.categoria,
         busqueda: filtrosActivos.busqueda,
       });
+      dibujarPaginador(data.total, pagina, limite); // <<< NUEVO
     })
-    .catch((error) => console.error("Error al cargar productos:", error));
 }
 
 // ACTUALIZAR LA BÚSQUEDA DESDE INPUTS
@@ -352,7 +357,6 @@ function enviarPedidoWhatsApp() {
   mensaje += `*📦 Total Mayorista: $${totalMayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*`;
 
     // 👉 ENVIAMOS A PHP
-    debugger
     fetch("src/php/guardar_ventas.php", {
       method: "POST",
       headers: {
@@ -385,3 +389,45 @@ document.addEventListener("DOMContentLoaded", () => {
     botonCompra.addEventListener("click", enviarPedidoWhatsApp);
   }
 });
+
+// PAGINADOR
+
+
+function dibujarPaginador(totalProductos, paginaActual, limite) {
+  const contenedor = document.getElementById("paginador");
+  contenedor.innerHTML = ""; // Limpiar el paginador
+
+  const totalPaginas = Math.ceil(totalProductos / limite);
+
+  if (totalPaginas <= 1) return; // No hace falta paginador si hay solo una página
+
+  // Botón Anterior
+  if (paginaActual > 1) {
+    const btnAnterior = document.createElement("button");
+    btnAnterior.textContent = "Anterior";
+    btnAnterior.onclick = () => cargarProductos(paginaActual - 1);
+    contenedor.appendChild(btnAnterior);
+  }
+
+  // Botones de número de página
+  for (let i = 1; i <= totalPaginas; i++) {
+    const btnPagina = document.createElement("button");
+    btnPagina.textContent = i;
+    if (i === paginaActual) {
+      btnPagina.disabled = true; // Desactivar el botón actual
+      btnPagina.style.fontWeight = "bold";
+      btnPagina.classList.add("activo"); // 👈 Le agregás una clase especial
+    }
+    btnPagina.onclick = () => cargarProductos(i);
+    contenedor.appendChild(btnPagina);
+  }
+
+  // Botón Siguiente
+  if (paginaActual < totalPaginas) {
+    const btnSiguiente = document.createElement("button");
+    btnSiguiente.textContent = "Siguiente";
+    btnSiguiente.onclick = () => cargarProductos(paginaActual + 1);
+    contenedor.appendChild(btnSiguiente);
+  }
+}
+
