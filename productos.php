@@ -210,11 +210,7 @@
     <!-- FILTROS -->
     <section class="filtros">
         <div class="filtro-container">
-            <div class="search-container special2">
-                <input type="text" class="busqueda" placeholder="Buscar...">
-                <button type="submit" class="btn-buscar"><i class="fas fa-search"></i></button>
-            </div>
-            <label for="filtro-select"><i class="fas fa-filter"></i> Filtrar</label>
+        <!--    <label for="filtro-select"><i class="fas fa-filter"></i> Filtrar</label> -->
             <select id="filtro-select">
                 <option value="preciomenor">Precio: Menor a Mayor</option>
                 <option value="preciomayor">Precio: Mayor a Menor</option>

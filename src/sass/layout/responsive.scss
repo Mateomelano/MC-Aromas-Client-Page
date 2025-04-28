@@ -85,3 +85,13 @@
         font-size: 1.5rem;
     }
 }
+
+
+// CARRITO Y PRODUCTOS //
+
+@media (max-width: 1350px) {
+    .carrito-drawer {
+      width: 400px !important;
+    }
+  }
+

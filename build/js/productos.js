@@ -139,6 +139,8 @@ function actualizarBusquedaYRecargar() {
   document.querySelectorAll(".busqueda").forEach((input) => {
     if (input.value.trim() !== "") {
       filtrosActivos.busqueda = input.value.trim();
+      filtrosActivos.marca = ""; // <<< LIMPIAMOS FILTROS
+      filtrosActivos.categoria = ""; // <<< LIMPIAMOS FILTROS
     }
   });
 

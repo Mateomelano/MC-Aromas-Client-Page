@@ -1106,7 +1106,6 @@ h2 {
 
 .filtro-container {
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 10px;
   margin: 20px 0;
@@ -1247,6 +1246,11 @@ h2 {
   }
   .instagram-link {
     font-size: 1.5rem;
+  }
+}
+@media (max-width: 1350px) {
+  .carrito-drawer {
+    width: 400px !important;
   }
 }
 .carrito-drawer {
