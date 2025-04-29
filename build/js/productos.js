@@ -113,10 +113,12 @@ let filtrosActivos = {
 };
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
 let paginaActual = 1; 
-const limitePorPagina = 2; // o 50 si querés
+const limitePorPagina = 6; // o 50 si querés
 function cargarProductos(pagina = 1) {
-  const limite = 2; // Cantidad de productos por página
+  debugger
+  const limite = 6; // Cantidad de productos por página
   const orden = document.getElementById("filtro-select")?.value || "";
+  console.log(orden)
 
   const url = `src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(
     filtrosActivos.busqueda
@@ -129,6 +131,7 @@ function cargarProductos(pagina = 1) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       mostrarProductos(data.productos); // Asumo que data trae {productos: [], total: X}
       mostrarFiltrosAplicados({
         marca: filtrosActivos.marca,
@@ -226,7 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Evento de cambio de orden
   const filtro = document.getElementById("filtro-select");
   if (filtro) {
-    filtro.addEventListener("change", cargarProductos);
+    debugger
+    filtro.addEventListener("change", () => cargarProductos(1));
   }
 
   // Buscar con botón
