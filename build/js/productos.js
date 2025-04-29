@@ -82,7 +82,6 @@ function mostrarProductos(productos) {
   productos.forEach((producto) => {
     const card = document.createElement("div");
     card.classList.add("card");
-    console.log(producto);
     card.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <div class="card-content">
@@ -114,10 +113,8 @@ let filtrosActivos = {
 let paginaActual = 1; 
 const limitePorPagina = 6; // o 50 si querés
 function cargarProductos(pagina = 1) {
-  debugger
   const limite = 6; // Cantidad de productos por página
   const orden = document.getElementById("filtro-select")?.value || "";
-  console.log(orden)
 
   const url = `src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(
     filtrosActivos.busqueda
@@ -130,7 +127,6 @@ function cargarProductos(pagina = 1) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       mostrarProductos(data.productos); // Asumo que data trae {productos: [], total: X}
       mostrarFiltrosAplicados({
         marca: filtrosActivos.marca,
@@ -228,7 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Evento de cambio de orden
   const filtro = document.getElementById("filtro-select");
   if (filtro) {
-    debugger
     filtro.addEventListener("change", () => cargarProductos(1));
   }
 
@@ -337,10 +332,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Whataspp Carrito Compra
 function enviarPedidoWhatsApp() {
-  console.log(carrito)
   const telefono = "5493534595325";
   if (carrito.length === 0) {
-    alert("El carrito está vacío.");
+    Swal.fire({
+      icon: 'info',
+      title: 'Carrito vacío',
+      text: 'El carrito está vacío.',
+      confirmButtonText: 'Aceptar'
+    })
     return;
   }
 

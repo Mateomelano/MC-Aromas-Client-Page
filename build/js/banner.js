@@ -269,10 +269,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Whataspp Carrito Compra
 function enviarPedidoWhatsApp() {
-  console.log(carrito)
   const telefono = "5493534595325";
   if (carrito.length === 0) {
-    alert("El carrito está vacío.");
+    Swal.fire({
+      icon: 'info',
+      title: 'Carrito vacío',
+      text: 'El carrito está vacío.',
+      confirmButtonText: 'Aceptar'
+    })
     return;
   }
 
