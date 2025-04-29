@@ -180,27 +180,30 @@
 
   <!-- CARRITO DESLIZANTE -->
   <section>
-    <div id="carrito" class="carrito-drawer">
-      <div class="carrito-header">
-        <h2>Carrito de compras</h2>
-        <button id="cerrarCarrito">&times;</button>
-      </div>
-      <div id="carritoContenido" class="carrito-contenido">
-        <!-- Los productos se inyectan por JS -->
-      </div>
-      <div class="carrito-footer">
-        <div class="carrito-total">
-          <span>Total:</span>
-          <strong id="carritoTotal">$0,00</strong>
-          <br>
-          <span>Total Mayorista:</span>
-          <strong id="carritoTotalMayorista">$0,00</strong>
-        </div>
-        <button class="btn-iniciar-compra">Iniciar compra</button>
+        <div id="carrito" class="carrito-drawer">
+            <div class="carrito-header">
+                <h2>Carrito de compras</h2>
+                <button id="cerrarCarrito">&times;</button>
+            </div>
+            <div id="carritoContenido" class="carrito-contenido">
+                <!-- Los productos se inyectan por JS -->
+            </div>
+            <div class="carrito-footer">
+                <div class="carrito-total">
+                    <div class="linea-total">
+                        <span>Total:</span>
+                        <strong id="carritoTotal">$0,00</strong>
+                    </div>
+                    <div class="linea-total-mayorista">
+                        <span>Total Mayorista:</span>
+                        <strong id="carritoTotalMayorista">$0,00</strong>
+                    </div>
+                </div>
+                <button class="btn-iniciar-compra">Iniciar compra</button>
+            </div>
 
-      </div>
-    </div>
-  </section>
+        </div>
+    </section>
 
 
   <!--  PRODUCTOS DESTACADOS  -->

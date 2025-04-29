@@ -14,6 +14,9 @@
 
 .carrito-drawer.abierto {
   right: 0;
+  transition: right 0.5s ease;
+
+  
 }
 
 .carrito-header {

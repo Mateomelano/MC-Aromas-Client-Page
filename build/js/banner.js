@@ -159,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".btn-buscar").forEach((btn) => {
-    debugger;
     btn.addEventListener("click", () => {
       const contenedor = btn.closest(".search-container");
       const input = contenedor.querySelector(".busqueda");
@@ -294,7 +293,6 @@ function enviarPedidoWhatsApp() {
   mensaje += `*📦 Total Mayorista: $${totalMayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*`;
 
     // 👉 ENVIAMOS A PHP
-    debugger
     fetch("src/php/guardar_ventas.php", {
       method: "POST",
       headers: {
