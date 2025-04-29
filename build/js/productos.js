@@ -99,7 +99,6 @@ function mostrarProductos(productos) {
 
       </div>
     `; 
-
     contenedor.appendChild(card);
   });
 }

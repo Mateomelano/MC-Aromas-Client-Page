@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const contenedor = btn.closest(".search-container");
       const input = contenedor.querySelector(".busqueda");
-
       if (input && input.value.trim() !== "") {
         const busqueda = encodeURIComponent(input.value.trim());
         window.location.href = `productos.php?busqueda=${busqueda}`;
