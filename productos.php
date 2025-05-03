@@ -202,7 +202,7 @@
                         <strong id="carritoTotalMayorista">$0,00</strong>
                     </div>
                 </div>
-                <button class="btn-iniciar-compra">Iniciar compra</button>
+                <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
             </div>
 
         </div>
