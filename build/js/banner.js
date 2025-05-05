@@ -68,9 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         card.innerHTML = `
         <div class="product-image">
           <img src="${producto.imagen}" alt="${producto.nombre}" />
-          <button class="add-to-cart">
-            <i class="icon">🛒</i>
-          </button>
         </div>
         <h3 class="product-title">${producto.nombre}</h3>
         <p class="product-price">$${parseFloat(producto.precio).toLocaleString(

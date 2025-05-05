@@ -6,7 +6,7 @@ $busqueda = $_GET['busqueda'] ?? '';
 $marca = $_GET['marca'] ?? '';
 $categoria = $_GET['categoria'] ?? '';
 $pagina = isset($_GET['pagina']) ? intval($_GET['pagina']) : 1;
-$limite = isset($_GET['limite']) ? intval($_GET['limite']) : 6;
+$limite = isset($_GET['limite']) ? intval($_GET['limite']) : 50;
 $offset = ($pagina - 1) * $limite;
 
 $sqlBase = "FROM productos WHERE habilitado = 1";
