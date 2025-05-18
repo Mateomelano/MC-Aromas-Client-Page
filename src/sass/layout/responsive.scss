@@ -93,6 +93,11 @@
     .carrito-drawer {
       width: 400px !important;
     }
+    .eliminar{
+      position: static !important;
+      font-size: 1.5rem !important;
+      margin-left: 6rem !important;
+    }
   }
 
 
@@ -112,5 +117,15 @@
     }
     .filtro-container{
       flex-direction: column;
+    }
+
+    .eliminar{
+      position: static !important;
+      font-size: 1.5rem !important;
+      margin-left: 3rem !important;
+    }
+
+    .carrito-drawer {
+      width: 350px !important;
     }
   }

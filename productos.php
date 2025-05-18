@@ -66,6 +66,7 @@
                         <i class="fas fa-chevron-right arrow-icon"></i>
                     </div>
                     <ul class="submenu">
+                        <li><a href="productos.php?marca=saphirus">Todo Saphirus</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Textil">Textil</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Home Spray">Home Spray</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Aerosol">Aerosol</a></li>
@@ -88,6 +89,7 @@
                         <i class="fas fa-chevron-right arrow-icon"></i>
                     </div>
                     <ul class="submenu">
+                        <li><a href="productos.php?marca=aromanza">Todo Aromanza</a></li>
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanosx8">Tibetanos x8</a></li>
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Premium">Tibetanos Premium</a>
                         </li>
@@ -112,17 +114,18 @@
 
                 <li class="has-submenu">
                     <div class="submenu-toggle">
-                        <span>SANDRA MARZAN</span>
+                        <span>SANDRA MARZZAN</span>
                         <i class="fas fa-chevron-right arrow-icon"></i>
                     </div>
                     <ul class="submenu">
-                        <li><a href="productos.php?marca=sandra%20marzan&categoria=Linea Hogar">Línea Hogar</a></li>
-                        <li><a href="productos.php?marca=sandra%20marzan&categoria=Linea Bebe Infantil">Línea
+                        <li><a href="productos.php?marca=Sandra Marzzan">Todo Sandra Marzzan</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Hogar">Línea Hogar</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Bebe Infantil">Línea
                                 Bebé/Infantil</a></li>
-                        <li><a href="productos.php?marca=sandra%20marzan&categoria=Linea Tal Cual">Línea Tal Cual</a>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Tal Cual">Línea Tal Cual</a>
                         </li>
-                        <li><a href="productos.php?marca=sandra%20marzan&categoria=Difusor">Difusor</a></li>
-                        <li><a href="productos.php?marca=sandra%20marzan&categoria=Aerosol">Aerosol</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Difusor">Difusor</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Aerosol">Aerosol</a></li>
 
                     </ul>
                 </li>
@@ -133,6 +136,7 @@
                         <i class="fas fa-chevron-right arrow-icon"></i>
                     </div>
                     <ul class="submenu">
+                        <li><a href="productos.php?marca=Sagrada Madre">Todo Sagrada Madre</a></li>
                         <li><a href="productos.php?marca=sagrada%20madre&categoria=Palo Santo">Palo Santo</a></li>
                         <li><a href="productos.php?marca=sagrada%20madre&categoria=Natural">Natural</a></li>
                         <li><a href="productos.php?marca=sagrada%20madre&categoria=Botanicos">Botánicos</a></li>
@@ -257,7 +261,7 @@
                     <li><a href="productos.php?marca=saphirus">Saphirus</a></li>
                     <li><a href="productos.php?marca=aromanza">Aromanza</a></li>
                     <li><a href="productos.php?marca=sagrada madre">Sagrada Madre</a></li>
-                    <li><a href="productos.php?marca=sandra marzan">Sandra Marzan</a></li>
+                    <li><a href="productos.php?marca=sandra marzzan">Sandra Marzan</a></li>
                     <li><a href="productos.php">Todos los productos</a></li>
                 </ul>
             </div>

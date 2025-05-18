@@ -83,7 +83,7 @@ function mostrarProductos(productos) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <img class="card-image" src="${producto.imagen}" alt="${producto.nombre}" onclick="mostrarImagen('${producto.imagen}', '${producto.nombre}')">
       <div class="card-content">
         <h3 class="producto-id" style="display: none;">${producto.id}</h3>
         <h3 class="producto-nombre">${producto.nombre}</h3>
@@ -101,6 +101,20 @@ function mostrarProductos(productos) {
     contenedor.appendChild(card);
   });
 }
+function mostrarImagen(url, nombre) {
+  Swal.fire({
+    title: nombre,
+    imageUrl: url,
+    imageAlt: nombre,
+    width: '70vh',
+    height: 'auto',
+    imageWidth: '100%', // ajusta a gusto
+    imageHeight: '100%',
+    background: '#fff',
+    confirmButtonText: 'Cerrar'
+  });
+}
+
 
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
 // Variables globales para filtros
@@ -111,9 +125,9 @@ let filtrosActivos = {
 };
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
 let paginaActual = 1; 
-const limitePorPagina = 6; // o 50 si querés
+const limitePorPagina = 50; // o 50 si querés
 function cargarProductos(pagina = 1) {
-  const limite = 6; // Cantidad de productos por página
+  const limite = 50; // Cantidad de productos por página
   const orden = document.getElementById("filtro-select")?.value || "";
 
   const url = `src/php/get_productos.php?orden=${orden}&busqueda=${encodeURIComponent(
@@ -397,39 +411,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function dibujarPaginador(totalProductos, paginaActual, limite) {
   const contenedor = document.getElementById("paginador");
-  contenedor.innerHTML = ""; // Limpiar el paginador
+  contenedor.innerHTML = "";
 
   const totalPaginas = Math.ceil(totalProductos / limite);
+  if (totalPaginas <= 1) return;
 
-  if (totalPaginas <= 1) return; // No hace falta paginador si hay solo una página
+  const crearBoton = (numero) => {
+    const btn = document.createElement("button");
+    btn.textContent = numero;
+    if (numero === paginaActual) {
+      btn.disabled = true;
+      btn.classList.add("activo");
+      btn.style.fontWeight = "bold";
+    }
+    btn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      cargarProductos(numero);
+    };
+    return btn;
+  };
+
+  const agregarElipsis = () => {
+    const span = document.createElement("span");
+    span.textContent = "...";
+    span.style.padding = "0 5px";
+    contenedor.appendChild(span);
+  };
 
   // Botón Anterior
   if (paginaActual > 1) {
     const btnAnterior = document.createElement("button");
     btnAnterior.textContent = "Anterior";
-    btnAnterior.onclick = () => cargarProductos(paginaActual - 1);
+    btnAnterior.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      cargarProductos(paginaActual - 1);
+    };
     contenedor.appendChild(btnAnterior);
   }
 
-  // Botones de número de página
-  for (let i = 1; i <= totalPaginas; i++) {
-    const btnPagina = document.createElement("button");
-    btnPagina.textContent = i;
-    if (i === paginaActual) {
-      btnPagina.disabled = true; // Desactivar el botón actual
-      btnPagina.style.fontWeight = "bold";
-      btnPagina.classList.add("activo"); // 👈 Le agregás una clase especial
+  // Siempre mostrar la primera página
+  contenedor.appendChild(crearBoton(1));
+
+  if (paginaActual > 4) agregarElipsis();
+
+  // Mostrar páginas cercanas a la actual
+  for (let i = paginaActual - 2; i <= paginaActual + 2; i++) {
+    if (i > 1 && i < totalPaginas) {
+      contenedor.appendChild(crearBoton(i));
     }
-    btnPagina.onclick = () => cargarProductos(i);
-    contenedor.appendChild(btnPagina);
+  }
+
+  if (paginaActual < totalPaginas - 3) agregarElipsis();
+
+  // Siempre mostrar la última página si no es la misma que la primera
+  if (totalPaginas > 1) {
+    contenedor.appendChild(crearBoton(totalPaginas));
   }
 
   // Botón Siguiente
   if (paginaActual < totalPaginas) {
     const btnSiguiente = document.createElement("button");
     btnSiguiente.textContent = "Siguiente";
-    btnSiguiente.onclick = () => cargarProductos(paginaActual + 1);
+    btnSiguiente.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      cargarProductos(paginaActual + 1);
+    };
     contenedor.appendChild(btnSiguiente);
   }
 }
+
 
