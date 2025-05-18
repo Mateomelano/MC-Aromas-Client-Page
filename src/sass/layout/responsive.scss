@@ -59,11 +59,26 @@
     }
   }
 
-
+@media (max-width: 700px) {
+    .marcas-secundarias .grid-mosaico-secundario {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "fuente"
+        "bloqueSuperior"
+        "bloqueInferior";
+      gap: 1.5rem; /* Podés ajustar el espacio entre bloques si querés */
+    }
+  }
 // INFO //
 
 
 @media (max-width: 730px) {
+
+  .info{
+    margin-top:30rem !important;
+  }
+
     .info-flex{
         flex-direction: column;
     }
@@ -84,6 +99,7 @@
     .instagram-link {
         font-size: 1.5rem;
     }
+    
 }
 
 

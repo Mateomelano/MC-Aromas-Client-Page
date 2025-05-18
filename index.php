@@ -251,6 +251,40 @@
       </div>
     </div>
   </section>
+<!--  MARCAS SECUNDARIAS  -->
+<section class="marcas-secundarias">
+  <div class="grid-mosaico-secundario">
+    
+    <div class="bloqueSuperior">
+      <div class="card velas">
+        <div class="overlay">
+          <a href="productos.php?categoria=Velas">VELAS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloqueInferior">
+      <div class="card lamparas">
+        <div class="overlay">
+          <a href="productos.php?categoria=Lamparas de sal">LÁMPARAS DE SAL</a>
+        </div>
+      </div>
+      <div class="card iluminarte">
+        <div class="overlay">
+          <a href="productos.php?categoria=Cascadas de humo">CASCADAS DE HUMO</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fuente">
+      <div class="overlay">
+        <a href="productos.php?categoria=Iluminarte">ILUMINARTE</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 
 
