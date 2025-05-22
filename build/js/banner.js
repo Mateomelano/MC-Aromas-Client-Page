@@ -5,7 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!slider || !indicatorsContainer) return;
 
-  fetch("src/php/get_banners.php")
+  // Detectar si estamos en mobile
+  const isMobile = window.innerWidth < 750;
+
+  // Elegir el endpoint según la resolución
+  const endpoint = isMobile
+    ? "src/php/get_bannersCel.php"
+    : "src/php/get_banners.php";
+
+  fetch(endpoint)
     .then((response) => response.json())
     .then((banners) => {
       if (!banners.length) {
@@ -54,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error al cargar banners:", error));
 });
+
 
 // FUNCION PRODUCTOS DESTACADOS
 document.addEventListener("DOMContentLoaded", () => {

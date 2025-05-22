@@ -57,7 +57,7 @@
         <i id="close-sidebar" class="fas fa-times"></i>
       </div>
       <ul class="sidebar-menu">
-        <li><a href="productos.php">VER TODOS LOS PRODUCTOS</a></li>
+        <li><a class="all-products" href="productos.php">VER TODOS LOS PRODUCTOS</a></li>
 
         <li class="has-submenu">
           <div class="submenu-toggle">
