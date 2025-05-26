@@ -2,7 +2,7 @@
 require_once 'db.php'; // tu archivo de conexión
 
 // Consulta SQL para obtener 4 productos habilitados WHERE habilitado = 1
-$sql = "SELECT nombre, precio, preciomayorista, imagen FROM productos WHERE habilitado = 1 LIMIT 4";
+$sql = "SELECT nombre, precio, preciomayorista, imagen FROM productos WHERE id IN (51, 198, 831, 773)";
 $result = $conn->query($sql);
 
 $productos = [];
