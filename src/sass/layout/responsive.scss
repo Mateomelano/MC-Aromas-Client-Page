@@ -145,3 +145,10 @@
       width: 350px !important;
     }
   }
+
+
+  @media (max-width: 1100px) {
+  .carrito-info-mayorista p {
+      font-size: 1rem !important;
+  }
+  }

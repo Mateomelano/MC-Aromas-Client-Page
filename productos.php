@@ -185,32 +185,37 @@
 
 
 
-    <!-- CARRITO DESLIZANTE -->
-    <section>
-        <div id="carrito" class="carrito-drawer">
-            <div class="carrito-header">
-                <h2>Carrito de compras</h2>
-                <button id="cerrarCarrito">&times;</button>
-            </div>
-            <div id="carritoContenido" class="carrito-contenido">
-                <!-- Los productos se inyectan por JS -->
-            </div>
-            <div class="carrito-footer">
-                <div class="carrito-total">
-                    <div class="linea-total">
-                        <span>Total:</span>
-                        <strong id="carritoTotal">$0,00</strong>
-                    </div>
-                    <div class="linea-total-mayorista">
-                        <span>Total Mayorista:</span>
-                        <strong id="carritoTotalMayorista">$0,00</strong>
-                    </div>
-                </div>
-                <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
-            </div>
-
+  <!-- CARRITO DESLIZANTE -->
+  <section>
+    <div id="carrito" class="carrito-drawer">
+      <div class="carrito-header">
+        <h2>Carrito de compras</h2>
+        <button id="cerrarCarrito">&times;</button>
+      </div>
+      <div id="carritoContenido" class="carrito-contenido">
+        <!-- Los productos se inyectan por JS -->
+      </div>
+      <div class="carrito-footer">
+        <div class="carrito-info-mayorista">
+          <p><strong>RECORDÁ:</strong> Si es tu primera vez comprando por <strong>MAYOR</strong> el monto mínimo de
+            compra es de <strong>$60.000</strong>.</p>
+          <p>Para ventas minoristas no hay mínimo de compra.</p>
         </div>
-    </section>
+        <div class="carrito-total">
+          <div class="linea-total">
+            <span>Total:</span>
+            <strong id="carritoTotal">$0,00</strong>
+          </div>
+          <div class="linea-total-mayorista">
+            <span>Total Mayorista:</span>
+            <strong id="carritoTotalMayorista">$0,00</strong>
+          </div>
+        </div>
+        <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
+      </div>
+
+    </div>
+  </section>
 
 
     <!-- FILTROS -->

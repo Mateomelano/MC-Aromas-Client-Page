@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="En Mercería Chela encontras aromatizantes, textiles, difusores, etc . Ubicados en [Villa Maria].">
+  <meta name="keywords" content="mercería, mercería chela, aromatizantes, textiles, difusores, mercería online, [Villa Maria]">
+  <meta name="robots" content="index, follow">
   <link rel="icon" type="image/jpeg"
     href="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg">
   <!-- Estilos -->
@@ -117,7 +120,8 @@
           <ul class="submenu">
             <li><a href="productos.php?marca=Sandra Marzzan">Todo Sandra Marzzan</a></li>
             <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Hogar">Línea Hogar</a></li>
-            <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Bebe Infantil">Línea Bebé/Infantil</a></li>
+            <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Bebe Infantil">Línea Bebé/Infantil</a>
+            </li>
             <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Tal Cual">Línea Tal Cual</a></li>
             <li><a href="productos.php?marca=sandra%20marzzan&categoria=Difusor">Difusor</a></li>
             <li><a href="productos.php?marca=sandra%20marzzan&categoria=Aerosol">Aerosol</a></li>
@@ -185,30 +189,35 @@
 
   <!-- CARRITO DESLIZANTE -->
   <section>
-        <div id="carrito" class="carrito-drawer">
-            <div class="carrito-header">
-                <h2>Carrito de compras</h2>
-                <button id="cerrarCarrito">&times;</button>
-            </div>
-            <div id="carritoContenido" class="carrito-contenido">
-                <!-- Los productos se inyectan por JS -->
-            </div>
-            <div class="carrito-footer">
-                <div class="carrito-total">
-                    <div class="linea-total">
-                        <span>Total:</span>
-                        <strong id="carritoTotal">$0,00</strong>
-                    </div>
-                    <div class="linea-total-mayorista">
-                        <span>Total Mayorista:</span>
-                        <strong id="carritoTotalMayorista">$0,00</strong>
-                    </div>
-                </div>
-                <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
-            </div>
-
+    <div id="carrito" class="carrito-drawer">
+      <div class="carrito-header">
+        <h2>Carrito de compras</h2>
+        <button id="cerrarCarrito">&times;</button>
+      </div>
+      <div id="carritoContenido" class="carrito-contenido">
+        <!-- Los productos se inyectan por JS -->
+      </div>
+      <div class="carrito-footer">
+        <div class="carrito-info-mayorista">
+          <p><strong>RECORDÁ:</strong> Si es tu primera vez comprando por <strong>MAYOR</strong>, el monto mínimo de
+            compra es de <strong>$60.000</strong> en <strong>Efectivo</strong> o <strong>Transferencia</strong>.</p>
+          <p>Para ventas minoristas no hay mínimo de compra.</p>
         </div>
-    </section>
+        <div class="carrito-total">
+          <div class="linea-total">
+            <span>Total:</span>
+            <strong id="carritoTotal">$0,00</strong>
+          </div>
+          <div class="linea-total-mayorista">
+            <span>Total Mayorista:</span>
+            <strong id="carritoTotalMayorista">$0,00</strong>
+          </div>
+        </div>
+        <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
+      </div>
+
+    </div>
+  </section>
 
 
   <!--  PRODUCTOS DESTACADOS  -->
@@ -251,39 +260,39 @@
       </div>
     </div>
   </section>
-<!--  MARCAS SECUNDARIAS  -->
-<section class="marcas-secundarias">
-  <div class="grid-mosaico-secundario">
-    
-    <div class="bloqueSuperior">
-      <div class="card velas">
-        <div class="overlay">
-          <a href="productos.php?categoria=Velas">VELAS</a>
+  <!--  MARCAS SECUNDARIAS  -->
+  <section class="marcas-secundarias">
+    <div class="grid-mosaico-secundario">
+
+      <div class="bloqueSuperior">
+        <div class="card velas">
+          <div class="overlay">
+            <a href="productos.php?categoria=Velas">VELAS</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="bloqueInferior">
-      <div class="card lamparas">
-        <div class="overlay">
-          <a href="productos.php?categoria=Lamparas de sal">LÁMPARAS DE SAL</a>
+      <div class="bloqueInferior">
+        <div class="card lamparas">
+          <div class="overlay">
+            <a href="productos.php?categoria=Lamparas de sal">LÁMPARAS DE SAL</a>
+          </div>
+        </div>
+        <div class="card iluminarte">
+          <div class="overlay">
+            <a href="productos.php?categoria=Cascadas de humo">CASCADAS DE HUMO</a>
+          </div>
         </div>
       </div>
-      <div class="card iluminarte">
+
+      <div class="card fuente">
         <div class="overlay">
-          <a href="productos.php?categoria=Cascadas de humo">CASCADAS DE HUMO</a>
+          <a href="productos.php?categoria=Iluminarte">ILUMINARTE</a>
         </div>
       </div>
-    </div>
 
-    <div class="card fuente">
-      <div class="overlay">
-        <a href="productos.php?categoria=Iluminarte">ILUMINARTE</a>
-      </div>
     </div>
-
-  </div>
-</section>
+  </section>
 
 
 
