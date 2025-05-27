@@ -58,6 +58,7 @@
                 <i id="close-sidebar" class="fas fa-times"></i>
             </div>
             <ul class="sidebar-menu">
+                <li><a class="all-products" href="index.php">INICIO</a></li> 
                 <li><a href="productos.php">VER TODOS LOS PRODUCTOS</a></li>
 
                 <li class="has-submenu">
@@ -122,7 +123,7 @@
                         <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Hogar">Línea Hogar</a></li>
                         <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Bebe Infantil">Línea
                                 Bebé/Infantil</a></li>
-                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Tal Cual">Línea Tal Cual</a>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Perfume">Línea Perfume</a>
                         </li>
                         <li><a href="productos.php?marca=sandra%20marzzan&categoria=Difusor">Difusor</a></li>
                         <li><a href="productos.php?marca=sandra%20marzzan&categoria=Aerosol">Aerosol</a></li>

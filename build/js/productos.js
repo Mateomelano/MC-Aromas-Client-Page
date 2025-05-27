@@ -394,9 +394,9 @@ function enviarPedidoWhatsApp() {
   window.open(isMobile ? urlMobile : urlWeb, "_blank");
 
     // 🧹 Vaciar el carrito
-    //carrito = [];
-    //localStorage.removeItem("carrito");
-    //actualizarCarrito();
+    carrito = [];
+    localStorage.removeItem("carrito");
+    actualizarCarrito();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
