@@ -71,22 +71,24 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((productos) => {
       const container = document.getElementById("productos-container");
 
-      productos.forEach((producto) => {
+      productos.forEach((producto, index) => {
         const card = document.createElement("div");
         card.className = "product-card";
+        card.style.animationDelay = `${index * 0.15}s`; // animación escalonada
+
         card.innerHTML = `
-        <div class="product-image">
-          <img src="${producto.imagen}" alt="${producto.nombre}" />
-        </div>
-        <h3 class="product-title">${producto.nombre}</h3>
-        <p class="product-price">$${parseFloat(producto.precio).toLocaleString(
-          "es-AR",
-          { minimumFractionDigits: 2 }
-        )}</p>
-        <p class="product-price-mayorista">Precio Mayorista: $${parseFloat(
-          producto.preciomayorista
-        ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
-      `;
+          <div class="product-image">
+            <span class="badge">Destacado</span>
+            <img src="${producto.imagen}" alt="${producto.nombre}" />
+          </div>
+          <h3 class="product-title">${producto.nombre}</h3>
+          <p class="product-price">$${parseFloat(producto.precio).toLocaleString(
+            "es-AR", { minimumFractionDigits: 2 }
+          )}</p>
+          <p class="product-price-mayorista">Precio Mayorista: $${parseFloat(
+            producto.preciomayorista
+          ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+        `;
         container.appendChild(card);
       });
     })
@@ -94,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error al cargar productos:", error);
     });
 });
+
 
 // FUNCION WHATSAPP
 function abrirWhatsApp() {
