@@ -1,3 +1,16 @@
+<?php
+require_once("src/php/db.php");
+
+$sql = "SELECT activado FROM mantenimiento WHERE id = 1";
+$resultado = $conn->query($sql);
+
+$mantenimiento_activo = false;
+
+if ($resultado && $fila = $resultado->fetch_assoc()) {
+    $mantenimiento_activo = (int)$fila['activado'] === 1;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +36,38 @@
 </head>
 
 <body>
+<?php if ($mantenimiento_activo): ?>
+<div id="mantenimiento-overlay">
+  <div class="contenido">
+    <h1>🛠️ Sitio en mantenimiento</h1>
+    <p>Estamos actualizando productos y precios. Volvé en unos minutos.</p>
+  </div>
+</div>
+<style>
+  #mantenimiento-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,1);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  #mantenimiento-overlay .contenido h1 {
+    font-size: 4rem;
+    color: #333;
+  }
+  #mantenimiento-overlay .contenido p {
+    font-size: 2.2rem;
+    color: #666;
+  }
+</style>
+<?php endif; ?>
 
   <!--  NAVBAR  -->
 
