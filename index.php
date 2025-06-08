@@ -426,7 +426,7 @@ if ($resultado && $fila = $resultado->fetch_assoc()) {
         </ul>
       </div>
 
-      <div class="footer-column">
+      <!--<div class="footer-column">
         <h3>Legales</h3>
         <ul>
           <li><a href="#">Política de privacidad</a></li>
@@ -434,7 +434,7 @@ if ($resultado && $fila = $resultado->fetch_assoc()) {
           <li><a href="#">Defensa al consumidor</a></li>
           <li><a href="#">Devoluciones y reembolsos</a></li>
         </ul>
-      </div>
+      </div>-->
     </div>
 
     <div class="footer-bottom">

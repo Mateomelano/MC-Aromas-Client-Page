@@ -280,15 +280,6 @@
                 </ul>
             </div>
 
-            <div class="footer-column">
-                <h3>Legales</h3>
-                <ul>
-                    <li><a href="#">Política de privacidad</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                    <li><a href="#">Defensa al consumidor</a></li>
-                    <li><a href="#">Devoluciones y reembolsos</a></li>
-                </ul>
-            </div>
         </div>
 
         <div class="footer-bottom">
