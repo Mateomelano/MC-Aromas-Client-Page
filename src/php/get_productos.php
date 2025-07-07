@@ -26,7 +26,7 @@ if (!empty($marca)) {
 // Filtro por categoría
 if (!empty($categoria)) {
     $categoria = $conn->real_escape_string($categoria);
-    $sqlBase .= " AND categoria LIKE '%$categoria%'";
+    $sqlBase .= " AND categoria = '$categoria'";
 }
 
 // Primero, contar el total (para el paginador)
@@ -36,7 +36,7 @@ $rowTotal = $resultTotal->fetch_assoc();
 $totalProductos = intval($rowTotal['total']);
 
 // Ahora, traer los productos de la página actual
-$sql = "SELECT id, nombre, descripcion, categoria, marca, precio, preciomayorista, imagen " . $sqlBase;
+$sql = "SELECT id, nombre, descripcion, categoria, marca, precio, preciomayorista, imagen, stock " . $sqlBase;
 
 // Ordenamiento
 switch ($orden) {

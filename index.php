@@ -115,6 +115,7 @@ if ($resultado && $fila = $resultado->fetch_assoc()) {
           </div>
           <ul class="submenu">
             <li><a href="productos.php?marca=saphirus">Todo Saphirus</a></li>
+            <li><a href="productos.php?marca=saphirus&categoria=Saphirus Parfum">Saphirus Parfum</a></li>
             <li><a href="productos.php?marca=saphirus&categoria=Textil">Textil</a></li>
             <li><a href="productos.php?marca=saphirus&categoria=Home Spray">Home Spray</a></li>
             <li><a href="productos.php?marca=saphirus&categoria=Aerosol">Aerosol</a></li>
@@ -125,8 +126,7 @@ if ($resultado && $fila = $resultado->fetch_assoc()) {
             <li><a href="productos.php?marca=saphirus&categoria=Aceite Esencial">Aceite Esencial</a></li>
             <li><a href="productos.php?marca=saphirus&categoria=Antihumedad">Antihumedad</a></li>
             <li><a href="productos.php?marca=saphirus&categoria=Aromatizantes Varios">Aromatizantes Varios</a></li>
-            <li><a href="productos.php?marca=saphirus&categoria=Shiny">Línea Shiny</a></li>
-            <li><a href="productos.php?marca=saphirus&categoria=Perfumes Milano">Perfumes Milano</a></li>
+            <li><a href="productos.php?marca=saphirus&categoria=Línea Shiny">Línea Shiny</a></li>
           </ul>
         </li>
 
@@ -139,6 +139,8 @@ if ($resultado && $fila = $resultado->fetch_assoc()) {
             <li><a href="productos.php?marca=aromanza">Todo Aromanza</a></li>
             <li><a href="productos.php?marca=aromanza&categoria=Tibetanosx8">Tibetanos x8</a></li>
             <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Premium">Tibetanos Premium</a></li>
+            <li><a href="productos.php?marca=aromanza&categoria=Difusores">Difusor</a></li>
+            <li><a href="productos.php?marca=aromanza&categoria=Difusor Auto">Difusor Auto</a></li>
             <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Slim">Tibetanos Slim</a></li>
             <li><a href="productos.php?marca=aromanza&categoria=Momentos">Momentos</a></li>
             <li><a href="productos.php?marca=aromanza&categoria=Conos">Conos</a></li>
@@ -376,7 +378,7 @@ if ($resultado && $fila = $resultado->fetch_assoc()) {
             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
         </svg>
 
-        <p>Pagos por Efectivo / Transeferencia</p>
+        <p>Pagos Mayoristas unicamente por Efectivo o Transferencia</p>
       </div>
 
       <div class="info-item">

@@ -58,7 +58,7 @@
                 <i id="close-sidebar" class="fas fa-times"></i>
             </div>
             <ul class="sidebar-menu">
-                <li><a class="all-products" href="index.php">INICIO</a></li> 
+                <li><a class="all-products" href="index.php">INICIO</a></li>
                 <li><a href="productos.php">VER TODOS LOS PRODUCTOS</a></li>
 
                 <li class="has-submenu">
@@ -68,6 +68,7 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="productos.php?marca=saphirus">Todo Saphirus</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Saphirus Parfum">Saphirus Parfum</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Textil">Textil</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Home Spray">Home Spray</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Aerosol">Aerosol</a></li>
@@ -79,8 +80,7 @@
                         <li><a href="productos.php?marca=saphirus&categoria=Antihumedad">Antihumedad</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Aromatizantes Varios">Aromatizantes
                                 Varios</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Shiny">Línea Shiny</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Perfumes Milano">Perfumes Milano</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Línea Shiny">Línea Shiny</a></li>
                     </ul>
                 </li>
 
@@ -92,6 +92,8 @@
                     <ul class="submenu">
                         <li><a href="productos.php?marca=aromanza">Todo Aromanza</a></li>
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanosx8">Tibetanos x8</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Difusores">Difusor</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Difusor Auto">Difusor Auto</a></li>
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Premium">Tibetanos Premium</a>
                         </li>
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Slim">Tibetanos Slim</a></li>
@@ -186,43 +188,44 @@
 
 
 
-  <!-- CARRITO DESLIZANTE -->
-  <section>
-    <div id="carrito" class="carrito-drawer">
-      <div class="carrito-header">
-        <h2>Carrito de compras</h2>
-        <button id="cerrarCarrito">&times;</button>
-      </div>
-      <div id="carritoContenido" class="carrito-contenido">
-        <!-- Los productos se inyectan por JS -->
-      </div>
-      <div class="carrito-footer">
-        <div class="carrito-info-mayorista">
-          <p><strong>RECORDÁ:</strong> Si es tu primera vez comprando por <strong>MAYOR</strong> el monto mínimo de
-            compra es de <strong>$60.000</strong>.</p>
-          <p>Para ventas minoristas no hay mínimo de compra.</p>
-        </div>
-        <div class="carrito-total">
-          <div class="linea-total">
-            <span>Total:</span>
-            <strong id="carritoTotal">$0,00</strong>
-          </div>
-          <div class="linea-total-mayorista">
-            <span>Total Mayorista:</span>
-            <strong id="carritoTotalMayorista">$0,00</strong>
-          </div>
-        </div>
-        <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
-      </div>
+    <!-- CARRITO DESLIZANTE -->
+    <section>
+        <div id="carrito" class="carrito-drawer">
+            <div class="carrito-header">
+                <h2>Carrito de compras</h2>
+                <button id="cerrarCarrito">&times;</button>
+            </div>
+            <div id="carritoContenido" class="carrito-contenido">
+                <!-- Los productos se inyectan por JS -->
+            </div>
+            <div class="carrito-footer">
+                <div class="carrito-info-mayorista">
+                    <p><strong>RECORDÁ:</strong> Si es tu primera vez comprando por <strong>MAYOR</strong> el monto
+                        mínimo de
+                        compra es de <strong>$60.000</strong>.</p>
+                    <p>Para ventas minoristas no hay mínimo de compra.</p>
+                </div>
+                <div class="carrito-total">
+                    <div class="linea-total">
+                        <span>Total:</span>
+                        <strong id="carritoTotal">$0,00</strong>
+                    </div>
+                    <div class="linea-total-mayorista">
+                        <span>Total Mayorista:</span>
+                        <strong id="carritoTotalMayorista">$0,00</strong>
+                    </div>
+                </div>
+                <button class="btn-iniciar-compra">Iniciar compra a WhatsApp</button>
+            </div>
 
-    </div>
-  </section>
+        </div>
+    </section>
 
 
     <!-- FILTROS -->
     <section class="filtros">
         <div class="filtro-container">
-        <!--    <label for="filtro-select"><i class="fas fa-filter"></i> Filtrar</label> -->
+            <!--    <label for="filtro-select"><i class="fas fa-filter"></i> Filtrar</label> -->
             <select id="filtro-select">
                 <option value="preciomenor">Precio: Menor a Mayor</option>
                 <option value="preciomayor">Precio: Mayor a Menor</option>

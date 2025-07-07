@@ -69,21 +69,28 @@ function mostrarProductos(productos) {
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
 
-  // Si no hay productos, mostramos mensaje
   if (productos.length === 0) {
     contenedor.innerHTML = `
-        <div class="no-productos" style="text-align:center; padding:2rem; color:#555;">
-          <p>No se encontraron productos.</p>
-        </div>
-      `;
+      <div class="no-productos" style="text-align:center; padding:2rem; color:#555;">
+        <p>No se encontraron productos.</p>
+      </div>
+    `;
     return;
   }
 
   productos.forEach((producto) => {
     const card = document.createElement("div");
     card.classList.add("card");
+
+    const stockTexto =
+      producto.stock > 0
+        ? `<p class="stock-disponible con-stock">Stock disponible: ${producto.stock}</p>`
+        : `<p class="stock-disponible sin-stock">Sin stock</p>`;
+
     card.innerHTML = `
-      <img class="card-image" src="${producto.imagen}" alt="${producto.nombre}" onclick="mostrarImagen('${producto.imagen}', '${producto.nombre}')">
+      <img class="card-image" src="${producto.imagen}" alt="${
+      producto.nombre
+    }" onclick="mostrarImagen('${producto.imagen}', '${producto.nombre}')">
       <div class="card-content">
         <h3 class="producto-id" style="display: none;">${producto.id}</h3>
         <h3 class="producto-nombre">${producto.nombre}</h3>
@@ -94,27 +101,37 @@ function mostrarProductos(productos) {
         <p class="precio-mayorista">Precio Mayorista: $ ${parseFloat(
           producto.preciomayorista
         ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
-      <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio}, '${producto.imagen}', ${producto.preciomayorista} , ${producto.id}  )">Agregar al carrito</button>
-
+        ${stockTexto}
+        <button onclick="agregarAlCarrito('${producto.nombre}', ${
+      producto.precio
+    }, '${producto.imagen}', ${producto.preciomayorista}, ${producto.id}, ${
+      producto.stock
+    })" ${
+      producto.stock <= 0
+        ? "disabled style='background:#ccc; cursor:not-allowed;'"
+        : ""
+    }>
+          Agregar al carrito
+        </button>
       </div>
-    `; 
+    `;
     contenedor.appendChild(card);
   });
 }
+
 function mostrarImagen(url, nombre) {
   Swal.fire({
     title: nombre,
     imageUrl: url,
     imageAlt: nombre,
-    width: '70vh',
-    height: 'auto',
-    imageWidth: '100%', // ajusta a gusto
-    imageHeight: '100%',
-    background: '#fff',
-    confirmButtonText: 'Cerrar'
+    width: "70vh",
+    height: "auto",
+    imageWidth: "100%", // ajusta a gusto
+    imageHeight: "100%",
+    background: "#fff",
+    confirmButtonText: "Cerrar",
   });
 }
-
 
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
 // Variables globales para filtros
@@ -124,7 +141,7 @@ let filtrosActivos = {
   busqueda: "",
 };
 // FUNCIÓN PARA CARGAR PRODUCTOS CON FILTROS
-let paginaActual = 1; 
+let paginaActual = 1;
 const limitePorPagina = 50; // o 50 si querés
 function cargarProductos(pagina = 1) {
   const limite = 50; // Cantidad de productos por página
@@ -148,7 +165,7 @@ function cargarProductos(pagina = 1) {
         busqueda: filtrosActivos.busqueda,
       });
       dibujarPaginador(data.total, pagina, limite); // <<< NUEVO
-    })
+    });
 }
 
 // ACTUALIZAR LA BÚSQUEDA DESDE INPUTS
@@ -261,14 +278,38 @@ document.addEventListener("DOMContentLoaded", () => {
 //CARRITO
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+function agregarAlCarrito(
+  nombre,
+  precio,
+  imagenUrl,
+  preciomayorista,
+  id,
+  stock
+) {
+  const productoExistente = carrito.find((p) => p.id === id);
 
-function agregarAlCarrito(nombre, precio, imagenUrl, preciomayorista, id) {
-  const productoExistente = carrito.find((p) => p.nombre === nombre);
   if (productoExistente) {
+    if (productoExistente.cantidad >= stock) {
+      Swal.fire({
+        icon: "warning",
+        title: "Stock insuficiente",
+        text: "No hay más unidades disponibles de este producto.",
+      });
+      return;
+    }
     productoExistente.cantidad++;
   } else {
-    carrito.push({ id, nombre, precio: parseFloat(precio), imagenUrl, preciomayorista: parseFloat(preciomayorista) , cantidad: 1 });
+    carrito.push({
+      id,
+      nombre,
+      precio: parseFloat(precio),
+      imagenUrl,
+      preciomayorista: parseFloat(preciomayorista),
+      cantidad: 1,
+      stock: stock,
+    });
   }
+
   actualizarCarrito();
   mostrarCarrito();
 }
@@ -284,9 +325,13 @@ function actualizarCarrito() {
       <img src="${prod.imagenUrl}" alt="${prod.nombre}" class="carrito-img">
       <div class="carrito-producto-info">
         <div class="nombre">${prod.nombre}</div>
-        <div class="precio"><strong>$${(prod.precio * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
+        <div class="precio"><strong>$${(
+          prod.precio * prod.cantidad
+        ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
         <span class="etiqueta-mayorista">Mayorista:</span>
-        <div class="preciomayorista"><strong>$${(prod.preciomayorista * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
+        <div class="preciomayorista"><strong>$${(
+          prod.preciomayorista * prod.cantidad
+        ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong></div>
         <div class="cantidad-control">
           <button onclick="cambiarCantidad(${index}, -1)">−</button>
           <span>${prod.cantidad}</span>
@@ -299,26 +344,50 @@ function actualizarCarrito() {
   });
 
   const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
-  const totalmayorista = carrito.reduce((sum, p) => sum + p.preciomayorista * p.cantidad, 0);
-  document.getElementById("carritoTotal").innerText = `$${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}`;
-  document.getElementById("carritoTotalMayorista").innerText = `$${totalmayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}`;
+  const totalmayorista = carrito.reduce(
+    (sum, p) => sum + p.preciomayorista * p.cantidad,
+    0
+  );
+  document.getElementById("carritoTotal").innerText = `$${total.toLocaleString(
+    "es-AR",
+    { minimumFractionDigits: 2 }
+  )}`;
+  document.getElementById(
+    "carritoTotalMayorista"
+  ).innerText = `$${totalmayorista.toLocaleString("es-AR", {
+    minimumFractionDigits: 2,
+  })}`;
 
-
-  const totalCantidad = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+  const totalCantidad = carrito.reduce(
+    (acc, producto) => acc + producto.cantidad,
+    0
+  );
   const contador = document.getElementById("contadorCarrito");
 
   contador.textContent = totalCantidad;
   contador.style.display = totalCantidad > 0 ? "inline-block" : "none";
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
-
 }
 
 function cambiarCantidad(index, delta) {
-  carrito[index].cantidad += delta;
-  if (carrito[index].cantidad <= 0) {
+  const producto = carrito[index];
+
+  if (delta === 1 && producto.cantidad >= producto.stock) {
+    Swal.fire({
+      icon: "warning",
+      title: "Stock insuficiente",
+      text: `Solo hay ${producto.stock} unidades disponibles de "${producto.nombre}".`,
+    });
+    return;
+  }
+
+  producto.cantidad += delta;
+
+  if (producto.cantidad <= 0) {
     carrito.splice(index, 1);
   }
+
   actualizarCarrito();
 }
 
@@ -341,7 +410,6 @@ document.addEventListener("DOMContentLoaded", () => {
     iconoCarrito.addEventListener("click", mostrarCarrito);
   }
   actualizarCarrito(); // ← Muy importante para que cargue lo guardado
-
 });
 
 //Whataspp Carrito Compra
@@ -349,11 +417,11 @@ function enviarPedidoWhatsApp() {
   const telefono = "5493534595325";
   if (carrito.length === 0) {
     Swal.fire({
-      icon: 'info',
-      title: 'Carrito vacío',
-      text: 'El carrito está vacío.',
-      confirmButtonText: 'Aceptar'
-    })
+      icon: "info",
+      title: "Carrito vacío",
+      text: "El carrito está vacío.",
+      confirmButtonText: "Aceptar",
+    });
     return;
   }
 
@@ -362,29 +430,40 @@ function enviarPedidoWhatsApp() {
   carrito.forEach((prod) => {
     mensaje += `• *${prod.nombre}*\n`;
     mensaje += `  Cantidad: ${prod.cantidad}\n`;
-    mensaje += `  Precio: $${(prod.precio * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}\n`;
-    mensaje += `  Precio Mayorista: $${(prod.preciomayorista * prod.cantidad).toLocaleString("es-AR", { minimumFractionDigits: 2 })}\n\n`;
+    mensaje += `  Precio: $${(prod.precio * prod.cantidad).toLocaleString(
+      "es-AR",
+      { minimumFractionDigits: 2 }
+    )}\n`;
+    mensaje += `  Precio Mayorista: $${(
+      prod.preciomayorista * prod.cantidad
+    ).toLocaleString("es-AR", { minimumFractionDigits: 2 })}\n\n`;
   });
 
   const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
-  const totalMayorista = carrito.reduce((sum, p) => sum + p.preciomayorista * p.cantidad, 0);
+  const totalMayorista = carrito.reduce(
+    (sum, p) => sum + p.preciomayorista * p.cantidad,
+    0
+  );
 
-  mensaje += `*💵 Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*\n`;
-  mensaje += `*📦 Total Mayorista: $${totalMayorista.toLocaleString("es-AR", { minimumFractionDigits: 2 })}*`;
+  mensaje += `*💵 Total: $${total.toLocaleString("es-AR", {
+    minimumFractionDigits: 2,
+  })}*\n`;
+  mensaje += `*📦 Total Mayorista: $${totalMayorista.toLocaleString("es-AR", {
+    minimumFractionDigits: 2,
+  })}*`;
 
-    // 👉 ENVIAMOS A PHP
-    fetch("src/php/guardar_ventas.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        productos: carrito,
-        total,
-        total_mayorista: totalMayorista
-      })
-    });
-
+  // 👉 ENVIAMOS A PHP
+  fetch("src/php/guardar_ventas.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productos: carrito,
+      total,
+      total_mayorista: totalMayorista,
+    }),
+  });
 
   const mensajeCodificado = encodeURIComponent(mensaje);
   const urlMobile = `https://wa.me/${telefono}?text=${mensajeCodificado}`;
@@ -393,10 +472,12 @@ function enviarPedidoWhatsApp() {
   const isMobile = /iPhone|Android|iPad|Mobile/i.test(navigator.userAgent);
   window.open(isMobile ? urlMobile : urlWeb, "_blank");
 
-    // 🧹 Vaciar el carrito
-    carrito = [];
-    localStorage.removeItem("carrito");
-    actualizarCarrito();
+  // 🧹 Vaciar el carrito
+  carrito = [];
+  localStorage.removeItem("carrito");
+    // 🔁 Recargar productos con el nuevo stock
+  cargarProductos();
+  actualizarCarrito();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -407,7 +488,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // PAGINADOR
-
 
 function dibujarPaginador(totalProductos, paginaActual, limite) {
   const contenedor = document.getElementById("paginador");
@@ -479,5 +559,3 @@ function dibujarPaginador(totalProductos, paginaActual, limite) {
     contenedor.appendChild(btnSiguiente);
   }
 }
-
-
