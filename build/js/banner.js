@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // FUNCION WHATSAPP
 function abrirWhatsApp() {
+  syncCarritoConServidor(); 
   const telefono = "5493534595325"; // sin espacios ni signos
   const mensaje = encodeURIComponent(
     "¡Hola! Quisiera más info sobre los productos."
@@ -260,10 +261,12 @@ function eliminarProducto(index) {
 }
 
 function mostrarCarrito() {
+  syncCarritoConServidor();
   document.getElementById("carrito").classList.add("abierto");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  syncCarritoConServidor();
   document.getElementById("cerrarCarrito").addEventListener("click", () => {
     document.getElementById("carrito").classList.remove("abierto");
   });
@@ -337,3 +340,80 @@ document.addEventListener("DOMContentLoaded", () => {
     botonCompra.addEventListener("click", enviarPedidoWhatsApp);
   }
 });
+
+
+// --- FETCH por IDs (usa tu PHP con mysqli) ---
+async function fetchProductosPorIds(ids = []) {
+  if (!ids.length) return { productos: [] };
+  const res = await fetch('src/php/get_productos_por_ids.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ids })
+  });
+  const text = await res.text();
+  if (!res.ok) {
+    console.error('HTTP error', res.status, text);
+    throw new Error(`HTTP ${res.status}`);
+  }
+  try {
+    return JSON.parse(text); // { productos: [...] }
+  } catch (e) {
+    console.error('Respuesta no-JSON:', text);
+    throw e;
+  }
+}
+
+// --- SYNC carrito con el servidor (actualiza precio, mayorista, nombre, imagen, stock) ---
+async function syncCarritoConServidor() {
+  if (!Array.isArray(carrito) || carrito.length === 0) return;
+
+  // Si tenés items viejos sin id, intentá conservar compatibilidad usando nombre
+  // Lo ideal es por ID:
+  const ids = carrito.map(p => p.id).filter(id => id !== undefined && id !== null);
+  if (ids.length === 0) return; // no hay IDs para sincronizar
+
+  const { productos } = await fetchProductosPorIds(ids);
+  const mapa = Object.fromEntries(productos.map(p => [Number(p.id), p]));
+
+  let huboCambios = false;
+  carrito = carrito.map(item => {
+    const srv = mapa[Number(item.id)];
+    if (!srv) return item; // si no existe más en server, lo dejamos tal cual (o podrías eliminarlo)
+
+    const nuevo = { ...item };
+
+    const nuevoPrecio = parseFloat(srv.precio);
+    const nuevoMayorista = parseFloat(srv.preciomayorista);
+    const nuevoStock = Number(srv.stock);
+
+    if (
+      nuevo.precio !== nuevoPrecio ||
+      nuevo.preciomayorista !== nuevoMayorista ||
+      nuevo.nombre !== srv.nombre ||
+      nuevo.imagenUrl !== srv.imagen ||
+      (Number.isFinite(nuevo.stock) && nuevo.stock !== nuevoStock)
+    ) {
+      huboCambios = true;
+    }
+
+    nuevo.precio = nuevoPrecio;
+    nuevo.preciomayorista = nuevoMayorista;
+    nuevo.nombre = srv.nombre;
+    nuevo.imagenUrl = srv.imagen;
+    nuevo.stock = nuevoStock; // aunque no lo uses acá, te sirve para validar +/-
+
+    // ajustá cantidad si stock bajó
+    if (Number.isFinite(nuevo.stock) && nuevo.cantidad > nuevo.stock) {
+      nuevo.cantidad = nuevo.stock;
+    }
+    // si stock es 0, podrías deshabilitar después el +, etc.
+
+    return nuevo;
+  });
+
+  if (huboCambios) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarCarrito();
+    // Swal.fire({ icon:'info', title:'Actualizamos tu carrito con los precios vigentes.' });
+  }
+}

@@ -397,10 +397,12 @@ function eliminarProducto(index) {
 }
 
 function mostrarCarrito() {
+  syncCarritoConServidor().then(actualizarCarrito);
   document.getElementById("carrito").classList.add("abierto");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  syncCarritoConServidor().then(actualizarCarrito);
   document.getElementById("cerrarCarrito").addEventListener("click", () => {
     document.getElementById("carrito").classList.remove("abierto");
   });
@@ -414,6 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Whataspp Carrito Compra
 function enviarPedidoWhatsApp() {
+  syncCarritoConServidor();
   const telefono = "5493534595325";
   if (carrito.length === 0) {
     Swal.fire({
@@ -557,5 +560,79 @@ function dibujarPaginador(totalProductos, paginaActual, limite) {
       cargarProductos(paginaActual + 1);
     };
     contenedor.appendChild(btnSiguiente);
+  }
+}
+
+
+async function fetchProductosPorIds(ids = []) {
+  debugger
+  if (!ids.length) return { productos: [] };
+
+  const res = await fetch('src/php/get_productos_por_ids.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ids })
+  });
+
+  const text = await res.text(); // <-- leemos texto SIEMPRE
+
+  if (!res.ok) {
+    console.error('HTTP error', res.status, text);
+    throw new Error(`HTTP ${res.status}`);
+  }
+
+  try {
+    return JSON.parse(text); // { productos: [...] }
+  } catch (e) {
+    console.error('No es JSON válido. Respuesta fue:', text);
+    throw e; // provoca el error que veías, pero ahora con pista
+  }
+}
+
+
+async function syncCarritoConServidor() {
+  if (!carrito || carrito.length === 0) return;
+
+  const ids = carrito.map(p => p.id);
+  const { productos } = await fetchProductosPorIds(ids);
+
+  const mapa = Object.fromEntries(productos.map(p => [Number(p.id), p]));
+  let huboCambios = false;
+
+  carrito = carrito.map(item => {
+    const srv = mapa[item.id];
+    if (!srv) return item; // opcional: eliminar si ya no existe
+    const updated = { ...item };
+
+    // Actualizamos SIEMPRE con datos frescos
+    const nuevoPrecio = parseFloat(srv.precio);
+    const nuevoMayorista = parseFloat(srv.preciomayorista);
+
+    if (updated.precio !== nuevoPrecio ||
+        updated.preciomayorista !== nuevoMayorista ||
+        updated.nombre !== srv.nombre ||
+        updated.imagenUrl !== srv.imagen ||
+        updated.stock !== Number(srv.stock)) {
+      huboCambios = true;
+    }
+
+    updated.precio = nuevoPrecio;
+    updated.preciomayorista = nuevoMayorista;
+    updated.nombre = srv.nombre;
+    updated.imagenUrl = srv.imagen;
+    updated.stock = Number(srv.stock);
+
+    // Ajuste por si el stock bajó
+    if (updated.cantidad > updated.stock) {
+      updated.cantidad = updated.stock;
+    }
+    return updated;
+  });
+
+  if (huboCambios) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarCarrito();
+    // opcional: avisar
+    // Swal.fire({ icon: 'info', title: 'Actualizamos tu carrito con los precios vigentes.' });
   }
 }
