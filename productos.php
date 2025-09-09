@@ -61,6 +61,7 @@
                 <li><a class="all-products" href="index.php">INICIO</a></li>
                 <li><a href="productos.php">VER TODOS LOS PRODUCTOS</a></li>
 
+                <!-- SAPHIRUS -->
                 <li class="has-submenu">
                     <div class="submenu-toggle">
                         <span>SAPHIRUS</span>
@@ -68,22 +69,24 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="productos.php?marca=saphirus">Todo Saphirus</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Saphirus Parfum">Saphirus Parfum</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Textil">Textil</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Home Spray">Home Spray</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Aerosol">Aerosol</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Difusor">Difusor</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Difusor Premium">Difusor Premium</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Miniconcentrado">Mini concentrado</a></li>
-                        <li><a href="productos.php?marca=saphirus&categoria=Aparatos">Aparatos</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Aceite Esencial">Aceite Esencial</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Aerosol">Aerosol</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Antihumedad">Antihumedad</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Aparatos">Aparatos</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Aromatizantes Varios">Aromatizantes
                                 Varios</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Difusor">Difusor</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Difusor Premium">Difusor Premium</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Home Spray">Home Spray</a></li>
                         <li><a href="productos.php?marca=saphirus&categoria=Línea Shiny">Línea Shiny</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Miniconcentrado">Mini concentrado</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Sahumerios">Sahumerios</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Saphirus Parfum">Saphirus Parfum</a></li>
+                        <li><a href="productos.php?marca=saphirus&categoria=Textil">Textil</a></li>
                     </ul>
                 </li>
 
+                <!-- AROMANZA -->
                 <li class="has-submenu">
                     <div class="submenu-toggle">
                         <span>AROMANZA</span>
@@ -91,30 +94,31 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="productos.php?marca=aromanza">Todo Aromanza</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Tibetanosx8">Tibetanos x8</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Difusores">Difusor</a></li>
+                        <!--<li><a href="productos.php?marca=aromanza&categoria=Buena Onda">Buena Onda</a></li>-->
+                        <li><a href="productos.php?marca=aromanza&categoria=Conos">Conos</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Difusor">Difusor</a></li>
                         <li><a href="productos.php?marca=aromanza&categoria=Difusor Auto">Difusor Auto</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Elixir">Elixir</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Esferas Magicas">Esferas Mágicas</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Esencias Premium">Esencias Premium</a></li>
+                        <!--<li><a href="productos.php?marca=aromanza&categoria=Kits">Kits</a></li>-->
+                        <li><a href="productos.php?marca=aromanza&categoria=Magicos">Mágicos</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Mini Buena Onda">Mini Buena Onda</a></li>
+                        <!--<li><a href="productos.php?marca=aromanza&categoria=Mini Tibetanos">Mini Tibetanos</a></li> -->
+                        <li><a href="productos.php?marca=aromanza&categoria=Momentos">Momentos</a></li>
+                        <li><a href="productos.php?marca=aromanza&categoria=Rama">Rama</a></li>
+                        <!--<li><a href="productos.php?marca=aromanza&categoria=Rocio Aurico">Rocío Aurico</a></li>-->
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Premium">Tibetanos Premium</a>
                         </li>
                         <li><a href="productos.php?marca=aromanza&categoria=Tibetanos Slim">Tibetanos Slim</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Momentos">Momentos</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Conos">Conos</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Mini Tibetanos">Mini Tibetanos</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Magicos">Mágicos</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Rama">Rama</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Esferas Magicas">Esferas Mágicas</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Kits">Kits</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Mini Buena Onda">Mini Buena Onda</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Buena Onda">Buena Onda</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Velas Aromaticas">Velas Aromáticas</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Difusor">Difusor</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=difusor de auto">Difusor de Auto</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=textil">Textil</a></li>
-                        <li><a href="productos.php?marca=aromanza&categoria=Rocio Aurico">Rocío Aurico</a></li>
-
+                        <li><a href="productos.php?marca=aromanza&categoria=Tibetanosx8">Tibetanos x8</a></li>
+                        <!--<li><a href="productos.php?marca=aromanza&categoria=textil">Textil</a></li>-->
+                        <!--<li><a href="productos.php?marca=aromanza&categoria=Velas Aromaticas">Velas Aromáticas</a></li>-->
+                        <li><a href="productos.php?marca=aromanza&categoria=Variedad">Variedad</a></li>
                     </ul>
                 </li>
 
+                <!-- SANDRA MARZZAN -->
                 <li class="has-submenu">
                     <div class="submenu-toggle">
                         <span>SANDRA MARZZAN</span>
@@ -122,17 +126,17 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="productos.php?marca=Sandra Marzzan">Todo Sandra Marzzan</a></li>
-                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Hogar">Línea Hogar</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Aerosol">Aerosol</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Difusor">Difusor</a></li>
                         <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Bebe Infantil">Línea
                                 Bebé/Infantil</a></li>
+                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Hogar">Línea Hogar</a></li>
                         <li><a href="productos.php?marca=sandra%20marzzan&categoria=Linea Perfume">Línea Perfume</a>
                         </li>
-                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Difusor">Difusor</a></li>
-                        <li><a href="productos.php?marca=sandra%20marzzan&categoria=Aerosol">Aerosol</a></li>
-
                     </ul>
                 </li>
 
+                <!-- SAGRADA MADRE -->
                 <li class="has-submenu">
                     <div class="submenu-toggle">
                         <span>SAGRADA MADRE</span>
@@ -140,51 +144,50 @@
                     </div>
                     <ul class="submenu">
                         <li><a href="productos.php?marca=Sagrada Madre">Todo Sagrada Madre</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Palo Santo">Palo Santo</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Natural">Natural</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Botanicos">Botánicos</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Patagonia">Patagonia</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Cannabis">Cannabis</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=9 Hierbas">9 Hierbas</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Sagrado">Sagrado</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Ritual">Ritual</a></li>
                         <li><a href="productos.php?marca=sagrada%20madre&categoria=5 Elementos">5 elementos</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Yagra">Yagra</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=India">India</a></li>
-                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Varios">Varios</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=9 Hierbas">9 Hierbas</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Botanicos">Botánicos</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Cannabis">Cannabis</a></li>
                         <li><a href="productos.php?marca=sagrada%20madre&categoria=Defumacion">Defumación</a></li>
-
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=India">India</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Natural">Natural</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Palo Santo">Palo Santo</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Patagonia">Patagonia</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Ritual">Ritual</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Sagrado">Sagrado</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Tao">TAO</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Varios">Varios</a></li>
+                        <li><a href="productos.php?marca=sagrada%20madre&categoria=Yagra">Yagra</a></li>
                     </ul>
                 </li>
 
+                <!-- OTROS -->
                 <li class="has-submenu">
                     <div class="submenu-toggle">
-                        <span>Otros</span>
+                        <span>OTROS</span>
                         <i class="fas fa-chevron-right arrow-icon"></i>
                     </div>
                     <ul class="submenu">
-
+                        <li><a href="productos.php?marca=otros&categoria=Cascadas De Humo">Cascadas de humo</a></li>
+                        <li><a href="productos.php?marca=otros&categoria=Figuras">Figuras</a></li>
+                        <li><a href="productos.php?marca=otros&categoria=Humidificadores">Humidificadores</a></li>
                         <li><a href="productos.php?marca=otros&categoria=Iluminarte">Iluminarte</a></li>
+                        <li><a href="productos.php?marca=otros&categoria=Lamparas De Sal">Lámparas de Sal</a></li>
+                        <li><a href="productos.php?marca=otros&categoria=Porta Sahumerios">Portasahumerios</a></li>
                         <li><a href="productos.php?marca=otros&categoria=Sahumerios Importados">Sahumerios
                                 importados</a></li>
                         <li><a href="productos.php?marca=otros&categoria=Sahumerios Nacionales">Sahumerios
                                 nacionales</a></li>
                         <li><a href="productos.php?marca=otros&categoria=Velas">Velas</a></li>
-                        <li><a href="productos.php?marca=otros&categoria=Humidificadores">Humidificadores</a></li>
-                        <li><a href="productos.php?marca=otros&categoria=Figuras">Figuras</a></li>
-                        <li><a href="productos.php?marca=otros&categoria=Cascadas De Humo">Cascadas de humo</a></li>
-                        <li><a href="productos.php?marca=otros&categoria=Lamparas De Sal">Lámparas de Sal</a></li>
-                        <li><a href="productos.php?marca=otros&categoria=Porta Sahumerios">Portasahumerios</a></li>
                         <li><a href="productos.php?marca=otros&categoria=Varios">Varios</a></li>
-
                     </ul>
                 </li>
 
-                <!-- Repetí esto mismo para otras marcas -->
                 <li><a href="#info">CONTACTANOS</a></li>
             </ul>
         </div>
     </section>
+
 
 
 
